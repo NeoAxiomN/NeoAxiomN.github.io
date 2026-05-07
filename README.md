@@ -45,6 +45,24 @@ When you are initially working on your website, it is very useful to be able to 
     brew install node
     gem install bundler
     ```
+    Homebrew Ruby is not added to your shell `PATH` automatically on many Macs, so `ruby`, `gem`, and `bundle` may still point at the system Ruby in `/usr/bin`. Before installing gems or starting Jekyll, prepend the Homebrew Ruby bin directory to your `PATH`:
+
+    Apple Silicon:
+    ```bash
+    export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+    ```
+
+    Intel Mac:
+    ```bash
+    export PATH="/usr/local/opt/ruby/bin:$PATH"
+    ```
+
+    You can confirm it worked with:
+    ```bash
+    which ruby
+    ruby -v
+    bundle -v
+    ```
 1. Run `bundle install` to install ruby dependencies. If you get errors, delete Gemfile.lock and try again.
 
     If you see file permission error like `Fetching bundler-2.6.3.gem ERROR:  While executing gem (Gem::FilePermissionError) You don't have write permissions for the /var/lib/gems/3.2.0 directory.` or `Bundler::PermissionError: There was an error while trying to write to /usr/local/bin.`
@@ -56,6 +74,17 @@ When you are initially working on your website, it is very useful to be able to 
 
 1. Run `jekyll serve -l -H localhost` to generate the HTML and serve it from `localhost:4000` the local server will automatically rebuild and refresh the pages on change to Markdown (*.md) and HTML files, while changes to the core template and configuration (i.e., `_config.yml`) will require stopping and restarting Jekyll.
     You may also try `bundle exec jekyll serve -l -H localhost` to ensure jekyll to use specific dependencies on your own local machine.
+
+    On macOS, the simplest option in this repository is:
+    ```bash
+    ./scripts/dev.sh
+    ```
+    It automatically prefers Homebrew Ruby when available, installs gems into `vendor/bundle`, loads compatibility shims required by this older Jekyll stack on modern Ruby, and starts the local Jekyll server.
+
+    You can also run other Jekyll commands through the same wrapper, for example:
+    ```bash
+    ./scripts/dev.sh build
+    ```
 
 If you are running on Linux it may be necessary to install some additional dependencies prior to being able to run locally: `sudo apt install build-essential gcc make`
 

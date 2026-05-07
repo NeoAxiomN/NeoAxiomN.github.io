@@ -11,3 +11,5 @@ end
 
 gem 'github-pages'
 gem 'connection_pool', '2.5.0'
+gem 'csv' # Ruby 3.4+/4.0 no longer ships csv as a default gem.
+gem 'bigdecimal' # Ruby 3.4+/4.0 no longer ships bigdecimal as a default gem.
