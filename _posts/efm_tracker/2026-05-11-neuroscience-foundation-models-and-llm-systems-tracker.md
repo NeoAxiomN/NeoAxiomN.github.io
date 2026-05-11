@@ -26,3 +26,6 @@ The list below contains review articles used to organize this overview. Original
 - [Foundation Models for Brain Signals: A Critical Review of Current Progress and Future Directions](https://arxiv.org/abs/2507.11783)
 - [EEG Foundation Models: Progresses, Benchmarking, and Open Problems](https://arxiv.org/abs/2601.17883)
 - [A systematic review of self-supervised foundation models for brain network representation using electroencephalography](https://arxiv.org/abs/2602.03269)
+
+**Note.** If you notice any errors, outdated links, or missing models, please feel free to contact me at [its.junyi.lin@gmail.com](mailto:its.junyi.lin@gmail.com).
+{: .notice--primary}
