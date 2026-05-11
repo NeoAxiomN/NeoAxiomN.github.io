@@ -1,0 +1,381 @@
+{% assign tracker_scope = include.scope | default: "eeg_family" %}
+{% assign all_models = site.data.efm_tracker.efm_models %}
+
+{% if tracker_scope == "all" %}
+  {% assign models = all_models | sort: "first_public_date" | reverse %}
+  {% assign modality_order = "eeg|intracranial_eeg|eeg_multimodal|fmri|brain_mri|multimodal_neuroimage|head_ct|spike|clinical_text_behavior" | split: "|" %}
+  {% assign category_order = "foundation_model|llm|framework_llm|system_llm" | split: "|" %}
+  {% assign category_filter_label = "Category" %}
+  {% assign category_column_label = "Category" %}
+  {% assign overview_lead = "This continuously updated overview covers EEG, iEEG, fMRI, MRI, CT, spike decoding, and LLM-based clinical or knowledge systems." %}
+  {% assign overview_points = "<code>First Public Date</code> records the earliest public release we could verify.||<code>Venue</code> shows the formal conference or journal when available, otherwise the corresponding preprint server.||Links prioritize the main <code>paper</code> page and include <code>code</code> when a public repository is available." | split: "||" %}
+{% else %}
+  {% assign eeg_models = all_models | where: "modality_group", "eeg" %}
+  {% assign intracranial_models = all_models | where: "modality_group", "intracranial_eeg" %}
+  {% assign eeg_multimodal_models = all_models | where: "modality_group", "eeg_multimodal" %}
+  {% assign models = eeg_models | concat: intracranial_models | concat: eeg_multimodal_models | sort: "first_public_date" | reverse %}
+  {% assign modality_order = "eeg|intracranial_eeg|eeg_multimodal" | split: "|" %}
+  {% assign category_order = "general_purpose|modality_specific|task_oriented" | split: "|" %}
+  {% assign category_filter_label = "FM Category" %}
+  {% assign category_column_label = "FM Category" %}
+  {% assign overview_lead = "This continuously updated overview focuses on EEG-family foundation models, covering scalp EEG, intracranial EEG, and multimodal models that explicitly include an EEG branch." %}
+  {% assign overview_points = "Both preprints and formally published models are included.||<code>First Public Date</code> follows the earliest public release we could verify for the cited model paper.||<code>Venue</code> shows the formal conference or journal when available, and the corresponding preprint server otherwise.||Links prioritize the main <code>paper</code> page, with <code>code</code> shown when a public repository is available." | split: "||" %}
+{% endif %}
+
+{% assign last_updated = "" %}
+{% assign year_seen = "" %}
+
+{% for model in models %}
+  {% if model.updated_date > last_updated %}
+    {% assign last_updated = model.updated_date %}
+  {% endif %}
+{% endfor %}
+
+<div class="efm-tracker" data-efm-tracker>
+  <div class="efm-tracker__overview">
+    <div class="efm-tracker__overview-main">
+      <h2>Coverage / Notes</h2>
+      <p>{{ overview_lead }}</p>
+      <ul>
+        {% for overview_point in overview_points %}
+          <li>{{ overview_point }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="efm-tracker__overview-stats">
+      <div class="efm-tracker__stat">
+        <span class="efm-tracker__stat-label">Latest data update</span>
+        <strong class="efm-tracker__stat-value">{{ last_updated }}</strong>
+      </div>
+      <div class="efm-tracker__stat">
+        <span class="efm-tracker__stat-label">Current coverage</span>
+        <strong class="efm-tracker__stat-value">{{ models | size }} model entries</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="efm-tracker__controls" aria-label="Model filters">
+    <div class="efm-tracker__control">
+      <label for="efm-filter-modality">Modality / Paradigm</label>
+      <select id="efm-filter-modality" data-efm-filter="modality">
+        <option value="">All</option>
+        {% for modality_key in modality_order %}
+          {% assign modality_has_models = false %}
+          {% for model in models %}
+            {% if model.modality_group == modality_key %}
+              {% assign modality_has_models = true %}
+            {% endif %}
+          {% endfor %}
+
+          {% if modality_has_models %}
+            {% case modality_key %}
+              {% when "eeg" %}
+                {% assign modality_label = "EEG" %}
+              {% when "intracranial_eeg" %}
+                {% assign modality_label = "Intracranial EEG (SEEG/ECoG)" %}
+              {% when "eeg_multimodal" %}
+                {% assign modality_label = "EEG + Other Brain Modalities" %}
+              {% when "fmri" %}
+                {% assign modality_label = "fMRI" %}
+              {% when "brain_mri" %}
+                {% assign modality_label = "Structural / Multicontrast MRI" %}
+              {% when "multimodal_neuroimage" %}
+                {% assign modality_label = "Multimodal Neuroimaging" %}
+              {% when "head_ct" %}
+                {% assign modality_label = "Head CT / Radiology" %}
+              {% when "spike" %}
+                {% assign modality_label = "Spike / Neural Population" %}
+              {% when "clinical_text_behavior" %}
+                {% assign modality_label = "Clinical Text / Dialogue / Knowledge Systems" %}
+            {% endcase %}
+            <option value="{{ modality_key }}">{{ modality_label }}</option>
+          {% endif %}
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="efm-tracker__control">
+      <label for="efm-filter-category">{{ category_filter_label }}</label>
+      <select id="efm-filter-category" data-efm-filter="category">
+        <option value="">All</option>
+        {% for category_key in category_order %}
+          {% assign category_has_models = false %}
+          {% for model in models %}
+            {% if tracker_scope == "all" %}
+              {% assign candidate_category = model.survey_category %}
+            {% else %}
+              {% assign candidate_category = model.fm_category %}
+            {% endif %}
+
+            {% if candidate_category == category_key %}
+              {% assign category_has_models = true %}
+            {% endif %}
+          {% endfor %}
+
+          {% if category_has_models %}
+            {% case category_key %}
+              {% when "general_purpose" %}
+                {% assign category_label = "General-Purpose Foundation Models" %}
+              {% when "modality_specific" %}
+                {% assign category_label = "Modality-Specific Base Models" %}
+              {% when "task_oriented" %}
+                {% assign category_label = "Task-Oriented Large-Scale Models" %}
+              {% when "foundation_model" %}
+                {% assign category_label = "Foundation Models" %}
+              {% when "llm" %}
+                {% assign category_label = "LLM-only Models" %}
+              {% when "framework_llm" %}
+                {% assign category_label = "Frameworks with LLMs" %}
+              {% when "system_llm" %}
+                {% assign category_label = "Systems with LLMs" %}
+            {% endcase %}
+            <option value="{{ category_key }}">{{ category_label }}</option>
+          {% endif %}
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="efm-tracker__control">
+      <label for="efm-filter-status">Publication Status</label>
+      <select id="efm-filter-status" data-efm-filter="status">
+        <option value="">All</option>
+        <option value="preprint">Preprint</option>
+        <option value="conference">Conference</option>
+        <option value="journal">Journal</option>
+      </select>
+    </div>
+
+    <div class="efm-tracker__control">
+      <label for="efm-filter-year">Year</label>
+      <select id="efm-filter-year" data-efm-filter="year">
+        <option value="">All</option>
+        {% for model in models %}
+          {% assign year_value = model.first_public_date | slice: 0, 4 %}
+          {% capture year_marker %}|{{ year_value }}|{% endcapture %}
+          {% unless year_seen contains year_marker %}
+            {% assign year_seen = year_seen | append: year_marker %}
+            <option value="{{ year_value }}">{{ year_value }}</option>
+          {% endunless %}
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="efm-tracker__control">
+      <label for="efm-filter-open">Open-source</label>
+      <select id="efm-filter-open" data-efm-filter="open">
+        <option value="">All</option>
+        <option value="true">Open-source</option>
+        <option value="false">Not open-source</option>
+      </select>
+    </div>
+
+    <div class="efm-tracker__actions">
+      <button type="button" class="btn btn--primary" data-efm-reset>Reset Filters</button>
+      <p class="efm-tracker__count" data-efm-count>Showing {{ models | size }} / {{ models | size }} models</p>
+    </div>
+  </div>
+
+  <p class="efm-tracker__empty" data-efm-empty hidden>No models match the current filters. Try adjusting the modality, year, or category.</p>
+
+  <div class="efm-tracker__groups">
+    {% for modality_key in modality_order %}
+      {% assign group_has_models = false %}
+      {% for model in models %}
+        {% if model.modality_group == modality_key %}
+          {% assign group_has_models = true %}
+        {% endif %}
+      {% endfor %}
+
+      {% if group_has_models %}
+        {% case modality_key %}
+          {% when "eeg" %}
+            {% assign modality_title = "EEG" %}
+            {% assign modality_desc = "Models primarily built for scalp EEG or general EEG representation learning." %}
+          {% when "intracranial_eeg" %}
+            {% assign modality_title = "Intracranial EEG (SEEG/ECoG)" %}
+            {% assign modality_desc = "Models centered on invasive neural recordings such as sEEG and ECoG." %}
+          {% when "eeg_multimodal" %}
+            {% assign modality_title = "EEG + Other Brain Modalities" %}
+            {% assign modality_desc = "Models that explicitly bridge EEG with MEG or other brain-signal modalities." %}
+          {% when "fmri" %}
+            {% assign modality_title = "fMRI" %}
+            {% assign modality_desc = "Functional MRI models focused on dynamics modeling, neural decoding, and image or text reconstruction." %}
+          {% when "brain_mri" %}
+            {% assign modality_title = "Structural / Multicontrast MRI" %}
+            {% assign modality_desc = "Foundation models and transfer systems centered on brain MRI representation learning, diagnosis, and segmentation." %}
+          {% when "multimodal_neuroimage" %}
+            {% assign modality_title = "Multimodal Neuroimaging" %}
+            {% assign modality_desc = "Models that explicitly integrate multiple neuroimaging streams such as MRI, PET, fMRI, image, or text supervision." %}
+          {% when "head_ct" %}
+            {% assign modality_title = "Head CT / Radiology" %}
+            {% assign modality_desc = "Brain CT models and report-generation systems for radiology or neurotrauma workflows." %}
+          {% when "spike" %}
+            {% assign modality_title = "Spike / Neural Population" %}
+            {% assign modality_desc = "Large-scale decoding models built around spike trains or neural population activity." %}
+          {% when "clinical_text_behavior" %}
+            {% assign modality_title = "Clinical Text / Dialogue / Knowledge Systems" %}
+            {% assign modality_desc = "LLM-driven systems, benchmarks, dialogue assistants, and knowledge frameworks grounded in neuroscience or mental-health data." %}
+        {% endcase %}
+
+        <section class="efm-group" data-efm-group="{{ modality_key }}">
+          <div class="efm-group__heading">
+            <h3>{{ modality_title }}</h3>
+            <p>{{ modality_desc }}</p>
+          </div>
+
+          {% for category_key in category_order %}
+            {% assign category_has_models = false %}
+            {% for model in models %}
+              {% if tracker_scope == "all" %}
+                {% assign model_category_value = model.survey_category %}
+              {% else %}
+                {% assign model_category_value = model.fm_category %}
+              {% endif %}
+
+              {% if model.modality_group == modality_key and model_category_value == category_key %}
+                {% assign category_has_models = true %}
+              {% endif %}
+            {% endfor %}
+
+            {% if category_has_models %}
+              {% case category_key %}
+                {% when "general_purpose" %}
+                  {% assign category_title = "General-Purpose Foundation Models" %}
+                {% when "modality_specific" %}
+                  {% assign category_title = "Modality-Specific Base Models" %}
+                {% when "task_oriented" %}
+                  {% assign category_title = "Task-Oriented Large-Scale Models" %}
+                {% when "foundation_model" %}
+                  {% assign category_title = "Foundation Models" %}
+                {% when "llm" %}
+                  {% assign category_title = "LLM-only Models" %}
+                {% when "framework_llm" %}
+                  {% assign category_title = "Frameworks with LLMs" %}
+                {% when "system_llm" %}
+                  {% assign category_title = "Systems with LLMs" %}
+              {% endcase %}
+
+              <section class="efm-category" data-efm-category-section="{{ category_key }}">
+                <h4 class="efm-category__title">{{ category_title }}</h4>
+                <div class="efm-table-shell">
+                  <div class="efm-table-frame">
+                    <div class="efm-table-head" aria-hidden="true">
+                      <span class="efm-table-head__toggle"></span>
+                      <span>Model</span>
+                      <span>Modality</span>
+                      <span>{{ category_column_label }}</span>
+                      <span class="efm-table-head__date">First Public Date</span>
+                      <span class="efm-table-head__venue">Venue</span>
+                      <span>Links</span>
+                      <span>Short Use Case</span>
+                    </div>
+
+                    <div class="efm-card-list">
+                      {% for model in models %}
+                        {% if tracker_scope == "all" %}
+                          {% assign category_value = model.survey_category %}
+                        {% else %}
+                          {% assign category_value = model.fm_category %}
+                        {% endif %}
+
+                        {% if model.modality_group == modality_key and category_value == category_key %}
+                          {% capture venue_display %}{{ model.venue_name }}{% if model.venue_year %} {{ model.venue_year }}{% endif %}{% endcapture %}
+                          <details
+                            class="efm-card"
+                            data-efm-card
+                            data-modality="{{ model.modality_group }}"
+                            data-category="{{ category_value }}"
+                            data-status="{{ model.pub_status }}"
+                            data-year="{{ model.first_public_date | slice: 0, 4 }}"
+                            data-open-source="{{ model.open_source }}">
+                            <summary class="efm-card__summary">
+                              <span class="efm-card__toggle" aria-hidden="true"></span>
+                              <span class="efm-card__cell efm-card__cell--model" data-label="Model">
+                                <strong>{{ model.name }}</strong>
+                                {% if model.aliases and model.aliases.size > 0 %}
+                                  <span class="efm-card__aliases">{{ model.aliases | join: " / " }}</span>
+                                {% endif %}
+                              </span>
+                              <span class="efm-card__cell" data-label="Modality">{{ modality_title }}</span>
+                              <span class="efm-card__cell" data-label="{{ category_column_label }}">{{ category_title }}</span>
+                              <span class="efm-card__cell efm-card__cell--date" data-label="First Public Date">{{ model.first_public_date }}</span>
+                              <span class="efm-card__cell efm-card__cell--venue" data-label="Venue">{{ venue_display }}</span>
+                              <span class="efm-card__cell" data-label="Links">
+                                <span class="efm-links">
+                                  <a class="efm-link efm-link--paper" href="{{ model.paper_url }}" target="_blank" rel="noopener noreferrer">Paper</a>
+                                  {% if model.code_url %}
+                                    <a class="efm-link efm-link--code" href="{{ model.code_url }}" target="_blank" rel="noopener noreferrer">Code</a>
+                                  {% endif %}
+                                </span>
+                              </span>
+                              <span class="efm-card__cell efm-card__cell--usecase" data-label="Short Use Case">{{ model.short_use_case }}</span>
+                            </summary>
+
+                            <div class="efm-card__detail">
+                              <dl class="efm-card__detail-grid">
+                                <div>
+                                  <dt>Pretraining</dt>
+                                  <dd>
+                                    {% if model.pretraining_tags and model.pretraining_tags.size > 0 %}
+                                      <div class="efm-tag-list">
+                                        {% for tag in model.pretraining_tags %}
+                                          <span class="efm-tag">{{ tag }}</span>
+                                        {% endfor %}
+                                      </div>
+                                    {% endif %}
+                                    <p>{{ model.pretraining_note }}</p>
+                                  </dd>
+                                </div>
+
+                                <div>
+                                  <dt>Finetuning</dt>
+                                  <dd>
+                                    {% if model.finetuning_tags and model.finetuning_tags.size > 0 %}
+                                      <div class="efm-tag-list">
+                                        {% for tag in model.finetuning_tags %}
+                                          <span class="efm-tag">{{ tag }}</span>
+                                        {% endfor %}
+                                      </div>
+                                    {% endif %}
+                                    <p>{{ model.finetuning_note }}</p>
+                                  </dd>
+                                </div>
+
+                                <div>
+                                  <dt>Backbone / Architecture</dt>
+                                  <dd>{{ model.backbone_note }}</dd>
+                                </div>
+
+                                <div>
+                                  <dt>Training Data Note</dt>
+                                  <dd>{{ model.training_data_note }}</dd>
+                                </div>
+
+                                <div>
+                                  <dt>Open-source status</dt>
+                                  <dd>{% if model.open_source %}Yes{% else %}No{% endif %}</dd>
+                                </div>
+
+                                {% if model.seed_source %}
+                                  <div>
+                                    <dt>Reference source</dt>
+                                    <dd>{{ model.seed_source }}</dd>
+                                  </div>
+                                {% endif %}
+
+                              </dl>
+                            </div>
+                          </details>
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </section>
+            {% endif %}
+          {% endfor %}
+        </section>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>

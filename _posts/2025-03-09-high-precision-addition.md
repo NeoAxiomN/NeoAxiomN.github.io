@@ -1,17 +1,15 @@
 ---
-title: "【Algorithm】高精加模板"
+title: "高精加模板"
 date: 2025-03-09
 permalink: /posts/2025/03/high-precision-addition/
 published: true
+excerpt: "C++ 高精度加法模板"
 tags:
   - algorithm
   - c++
   - template
   - 高精度
 ---
-
-
-高精加模板
 
 ```cpp
 #define r int // register关键字将变量存储在CPU寄存器中，可以提高效率

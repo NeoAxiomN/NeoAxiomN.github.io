@@ -76,6 +76,33 @@
   }
 }
 
+.blog-toc {
+  display: none;
+
+  @include breakpoint($x-large) {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: calc(16.9491525424% - 0.75rem);
+    min-width: 9.5rem;
+    max-width: 11rem;
+    margin: 0;
+    z-index: 5;
+    pointer-events: none;
+  }
+}
+
+.blog-toc[hidden] {
+  display: none !important;
+}
+
+.page--has-blog-toc .blog-toc {
+  @include breakpoint($x-large) {
+    display: block;
+  }
+}
+
 
 /*
    Table of contents
@@ -133,6 +160,30 @@
     li ul li ul li ul > li a {
       padding-left: 3rem;
     }
+  }
+}
+
+.blog-toc .toc {
+  pointer-events: auto;
+  padding: 0.9rem 1rem;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.045);
+
+  @include breakpoint($x-large) {
+    position: sticky;
+    top: calc(#{$masthead-height} + 1rem);
+  }
+}
+
+.blog-toc .toc__menu {
+  margin-top: 0.65rem;
+
+  li {
+    margin: 0;
+  }
+
+  a {
+    padding: 0.18rem 0;
+    text-decoration: none;
   }
 }
 

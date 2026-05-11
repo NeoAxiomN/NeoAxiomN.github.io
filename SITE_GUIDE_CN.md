@@ -429,6 +429,18 @@ npm run build:js
 - 配置型内容适合放这里。
 - 同一份数据要被多个页面复用时，也适合放这里。
 
+### 9.1.1 EEG Tracker 的独立目录
+
+为了不和模板原有文件混在一起，这条 EEG tracker 现在统一放在各类型目录下的 `efm_tracker/` 子目录里：
+
+- 数据：`_data/efm_tracker/efm_models.yml`
+- 模板：`_includes/efm_tracker/efm_tracker.html`
+- 文章：`_posts/efm_tracker/2026-05-11-neuroscience-foundation-models-and-llm-systems-tracker.md`
+- 样式：`_sass/layout/efm_tracker/_efm_tracker.scss`
+- 脚本：`assets/js/efm_tracker/efm_tracker.js`
+
+以后如果你继续维护这条 tracker，优先只在这几个位置改，不需要再和旧模板文件混着找。
+
 ### 9.2 `markdown_generator/`
 
 这是批量生成内容的工具目录，适合你以后内容很多的时候用。

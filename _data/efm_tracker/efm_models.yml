@@ -1,0 +1,1972 @@
+---
+- id: bendr
+  name: BENDR
+  aliases: []
+  modality_group: eeg
+  fm_category: general_purpose
+  survey_category: foundation_model
+  pub_status: journal
+  first_public_date: '2021-01-28'
+  venue_name: Frontiers in Human Neuroscience
+  venue_year: 2021
+  paper_url: https://doi.org/10.3389/fnhum.2021.653659
+  code_url: https://github.com/SPOClab-ca/BENDR
+  short_use_case: An early representative foundation model for BCI and general EEG downstream tasks.
+  backbone_note: 1D convolutional encoder + 8-layer Transformer context network.
+  pretraining_tags:
+  - contrastive self-supervised learning
+  - masked signal modeling
+  - context prediction
+  pretraining_note: Learns context-aware representations with contrastive self-supervision, emphasizing long-range temporal dependencies.
+  finetuning_tags:
+  - full fine-tuning
+  - linear evaluation
+  finetuning_note: Supports both linear evaluation on frozen representations and end-to-end task-specific fine-tuning.
+  training_data_note: Large-scale clinical EEG corpora centered on TUH/TUEG, covering 10,000+ subjects and repeated follow-up sessions.
+  open_source: true
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: eegformer
+  name: EEGFormer
+  aliases: []
+  modality_group: eeg
+  fm_category: modality_specific
+  survey_category: foundation_model
+  pub_status: preprint
+  first_public_date: '2024-01-11'
+  venue_name: arXiv preprint
+  venue_year:
+  paper_url: https://arxiv.org/abs/2401.10278
+  code_url:
+  short_use_case: A large-scale EEG foundation model emphasizing transferability and interpretability.
+  backbone_note: Transformer-based EEG encoder designed for both cross-dataset transfer and interpretability analysis.
+  pretraining_tags:
+  - masked signal modeling
+  - sequential modeling
+  pretraining_note: Uses masked modeling to learn EEG sequence context and improve transferable representations across tasks.
+  finetuning_tags:
+  - full fine-tuning
+  finetuning_note: Primarily adapted by replacing the task head and then fine-tuning end to end.
+  training_data_note: Pretrained on TUH Corpus, with the paper highlighting EEG data at roughly the 1.7 TB scale.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: eegpt-v1
+  name: EEGPT v1
+  aliases:
+  - EEGPT
+  - Pretrained Transformer for Universal and Reliable Representation of EEG Signals
+  modality_group: eeg
+  fm_category: general_purpose
+  survey_category: foundation_model
+  pub_status: conference
+  first_public_date: '2024-09-25'
+  venue_name: NeurIPS
+  venue_year: 2024
+  paper_url: https://openreview.net/forum?id=lvS2b8CjG5
+  code_url: https://github.com/BINE022/EEGPT
+  short_use_case: A general-purpose EFM for multitask EEG feature extraction and linear-probing evaluation.
+  backbone_note: Hierarchical spatio-temporal Transformer with explicit decoupling of spatial and temporal modeling.
+  pretraining_tags:
+  - masked autoencoding
+  - dual self-supervision
+  - spatio-temporal alignment
+  pretraining_note: Built around mask-based dual self-supervision with representation-level spatio-temporal alignment.
+  finetuning_tags:
+  - linear probe
+  - full fine-tuning
+  finetuning_note: The paper focuses on linear probing, but the model can also be fully fine-tuned for downstream tasks.
+  training_data_note: Mixed multitask EEG pretraining data spanning paradigms such as motor imagery, SSVEP, and emotion recognition.
+  open_source: true
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: eegpt-v2
+  name: EEGPT v2
+  aliases:
+  - EEGPT
+  - BrainGPT
+  modality_group: eeg
+  fm_category: general_purpose
+  survey_category: foundation_model
+  pub_status: preprint
+  first_public_date: '2024-10-14'
+  venue_name: arXiv preprint
+  venue_year:
+  paper_url: https://arxiv.org/abs/2410.19779
+  code_url:
+  short_use_case: An EEG generalist foundation model variant centered on autoregressive pre-training.
+  backbone_note: Autoregressive EEG Transformer that unifies multitask representation learning through token prediction.
+  pretraining_tags:
+  - autoregressive pre-training
+  - token prediction
+  pretraining_note: Replaces purely masked reconstruction with autoregressive pretraining to emphasize unified generative-style modeling.
+  finetuning_tags:
+  - full fine-tuning
+  finetuning_note: Transferred with task-specific heads or direct end-to-end fine-tuning.
+  training_data_note: The paper emphasizes large mixed multitask EEG data and a generalist setup, though public details remain relatively preprint-stage.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: labram
+  name: LaBraM
+  aliases:
+  - Large Brain Model
+  - Large Brain Model for Learning Generic Representations with Tremendous EEG Data in BCI
+  modality_group: eeg
+  fm_category: general_purpose
+  survey_category: foundation_model
+  pub_status: conference
+  first_public_date: '2023-10-13'
+  venue_name: ICLR
+  venue_year: 2024
+  paper_url: https://openreview.net/forum?id=QzTpTRVtrP
+  code_url: https://github.com/935963004/LaBraM
+  short_use_case: A large-scale masked-modeling foundation model for generic EEG representation learning.
+  backbone_note: Neural tokenizer plus masked neural Transformer, centered on vector-quantized neural code prediction.
+  pretraining_tags:
+  - masked neural code prediction
+  - vector-quantized tokenizer
+  - masked signal modeling
+  pretraining_note: First learns a neural tokenizer, then predicts discrete codes for masked EEG channel patches.
+  finetuning_tags:
+  - full fine-tuning
+  - linear probe
+  finetuning_note: Supports direct fine-tuning on heterogeneous downstream tasks and is also frequently used for transfer and linear-probing evaluations.
+  training_data_note: Roughly 2,500 hours of multi-type EEG data aggregated from about 20 datasets.
+  open_source: true
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: fome
+  name: FoME
+  aliases: []
+  modality_group: eeg_multimodal
+  fm_category: general_purpose
+  survey_category: foundation_model
+  pub_status: preprint
+  first_public_date: '2024-09-19'
+  venue_name: arXiv preprint
+  venue_year:
+  paper_url: https://arxiv.org/abs/2409.12454
+  code_url: https://github.com/1061413241/FoME
+  short_use_case: A foundation model for EEG covering classification, forecasting, and imputation.
+  backbone_note: Time-frequency fusion embedding + ATLAS (Adaptive Temporal-Lateral Attention Scaling).
+  pretraining_tags:
+  - masked signal modeling
+  - time-frequency fusion
+  - adaptive attention scaling
+  pretraining_note: Uses unified pretraining on large-scale scalp and intracranial EEG while strengthening joint time-frequency modeling.
+  finetuning_tags:
+  - full fine-tuning
+  finetuning_note: Adapted with task heads for multiple task families including classification, forecasting, and imputation.
+  training_data_note: 1.7 TB of diverse scalp and intracranial EEG from about 15,000 subjects.
+  open_source: true
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: cbramod
+  name: CBraMod
+  aliases:
+  - Criss-Cross Brain Foundation Model
+  - A Criss-Cross Brain Foundation Model for EEG Decoding
+  modality_group: eeg
+  fm_category: modality_specific
+  survey_category: foundation_model
+  pub_status: conference
+  first_public_date: '2024-12-10'
+  venue_name: ICLR
+  venue_year: 2025
+  paper_url: https://openreview.net/forum?id=NPNUHgHF2w
+  code_url: https://github.com/wjq-learning/CBraMod
+  short_use_case: A criss-cross foundation model for BCI and cross-task EEG decoding.
+  backbone_note: Criss-cross Transformer that separates spatial and temporal dependencies into two parallel attention paths.
+  pretraining_tags:
+  - masked EEG reconstruction
+  - criss-cross attention
+  - conditional positional encoding
+  pretraining_note: Learns transferable representations for varied EEG formats through patch-based masked EEG reconstruction.
+  finetuning_tags:
+  - full fine-tuning
+  finetuning_note: Uses a unified backbone to transfer into tasks such as emotion recognition and motor imagery.
+  training_data_note: Pretrained mainly on TUEG at roughly 1.1M samples and 9,000+ hours.
+  open_source: true
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: codebrain
+  name: CodeBrain
+  aliases: []
+  modality_group: eeg
+  fm_category: modality_specific
+  survey_category: foundation_model
+  pub_status: conference
+  first_public_date: '2025-06-10'
+  venue_name: ICLR
+  venue_year: 2026
+  paper_url: https://openreview.net/forum?id=msJgEkjwh5
+  code_url: https://github.com/jingyingma01/CodeBrain
+  short_use_case: An EEG foundation model emphasizing interpretable tokenization and efficient long-range modeling.
+  backbone_note: TFDual-Tokenizer plus multi-scale EEGSSM, balancing time-frequency discretization with both local and long-range dependencies.
+  pretraining_tags:
+  - tokenizer pretraining
+  - multi-scale sequence modeling
+  - time-frequency modeling
+  pretraining_note: First expands the representation space with a dual time-frequency tokenizer, then pretrains a unified multi-scale backbone.
+  finetuning_tags:
+  - full fine-tuning
+  - distribution-shift evaluation
+  finetuning_note: Evaluated through task adaptation and generalization under multi-dataset distribution shift settings.
+  training_data_note: Built around the largest public EEG corpus and evaluated for generalization on 8 tasks across 10 datasets.
+  open_source: true
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: csbrain
+  name: CSBrain
+  aliases:
+  - Cross-scale Spatiotemporal Brain Foundation Model
+  - A Cross-scale Spatiotemporal Brain Foundation Model for EEG Decoding
+  modality_group: eeg
+  fm_category: modality_specific
+  survey_category: foundation_model
+  pub_status: conference
+  first_public_date: '2025-06-29'
+  venue_name: NeurIPS
+  venue_year: 2025
+  paper_url: https://openreview.net/forum?id=agcXjEHmyW
+  code_url: https://github.com/yuchen2199/CSBrain
+  short_use_case: A foundation model that improves EEG decoding generalization through cross-scale inductive bias.
+  backbone_note: Cross-scale Spatiotemporal Tokenization + Structured Sparse Attention.
+  pretraining_tags:
+  - cross-scale tokenization
+  - structured sparse attention
+  - scale-aware modeling
+  pretraining_note: Explicitly encodes patterns at different temporal and spatial scales into scale-aware tokens.
+  finetuning_tags:
+  - full fine-tuning
+  finetuning_note: Uses a unified transfer and task-adaptation setup across 11 EEG tasks and 16 datasets.
+  training_data_note: Broad multitask and multi-dataset evaluation covering cognition, emotion, diagnosis, and BCI tasks.
+  open_source: true
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: neuro-gpt
+  name: Neuro-GPT
+  aliases:
+  - NeuroGPT
+  modality_group: eeg
+  fm_category: modality_specific
+  survey_category: foundation_model
+  pub_status: conference
+  first_public_date: '2023-11-07'
+  venue_name: IEEE International Symposium on Biomedical Imaging (ISBI)
+  venue_year: 2024
+  paper_url: https://ieeexplore.ieee.org/document/10635453
+  code_url: https://github.com/wenhui0206/NeuroGPT
+  short_use_case: Combines an EEG encoder with GPT-style modeling for low-data EEG and BCI transfer.
+  backbone_note: A two-module foundation model with an EEG encoder and a GPT-style sequence model.
+  pretraining_tags:
+  - masked segment reconstruction
+  - self-supervised pretraining
+  pretraining_note: Pretrained on large public EEG data via masked EEG segment reconstruction.
+  finetuning_tags:
+  - full fine-tuning
+  finetuning_note: Adapted end to end on downstream tasks, with motor imagery classification as the representative example.
+  training_data_note: Mainly pretrained on TUH EEG Corpus and validated on tasks such as BCI Competition IV 2a.
+  open_source: true
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: alfee
+  name: ALFEE
+  aliases: []
+  modality_group: eeg
+  fm_category: general_purpose
+  survey_category: foundation_model
+  pub_status: preprint
+  first_public_date: '2025-05-07'
+  venue_name: arXiv preprint
+  venue_year:
+  paper_url: https://arxiv.org/abs/2505.06291
+  code_url: https://github.com/xw1216/ALFEE
+  short_use_case: A large adaptive foundation model for multitask EEG representation learning.
+  backbone_note: Hybrid Transformer with channel encoder, temporal encoder, and hybrid decoder.
+  pretraining_tags:
+  - mask reconstruction
+  - temporal forecasting
+  - task prediction
+  pretraining_note: Uses a two-stage training pipeline that jointly optimizes task prediction, channel and temporal masking, and forecasting.
+  finetuning_tags:
+  - full fine-tuning
+  finetuning_note: Adapts downstream tasks with a task-specific token dictionary and a cross-attention layer.
+  training_data_note: About 25,000 hours of EEG pretraining spanning clinical, emotion, sleep, and workload scenarios.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: lead
+  name: LEAD
+  aliases: []
+  modality_group: eeg
+  fm_category: task_oriented
+  survey_category: foundation_model
+  pub_status: preprint
+  first_public_date: '2025-02-02'
+  venue_name: arXiv preprint
+  venue_year:
+  paper_url: https://arxiv.org/abs/2502.01678
+  code_url: https://github.com/DL4mHealth/LEAD
+  short_use_case: A task-oriented foundation model for EEG-based Alzheimer's disease detection.
+  backbone_note: Gated temporal-spatial Transformer that supports variable-length, variable-channel, and variable-sampling-rate EEG.
+  pretraining_tags:
+  - medical contrastive learning
+  - subject-regularized pretraining
+  pretraining_note: Uses subject-aware pretraining on both AD-related and non-AD neurological EEG datasets.
+  finetuning_tags:
+  - full fine-tuning
+  finetuning_note: Fine-tuned primarily toward AD detection as the core clinical endpoint.
+  training_data_note: Built on an EEG-AD corpus of 2,238 subjects and jointly pretrained with 13 related datasets.
+  open_source: true
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: luna
+  name: LUNA
+  aliases: []
+  modality_group: eeg
+  fm_category: modality_specific
+  survey_category: foundation_model
+  pub_status: conference
+  first_public_date: '2025-06-09'
+  venue_name: NeurIPS
+  venue_year: 2025
+  paper_url: https://openreview.net/forum?id=uazfjnFL0G
+  code_url: https://github.com/pulp-bio/BioFoundation
+  short_use_case: A topology-agnostic EEG foundation model for heterogeneous electrode layouts and efficient computation.
+  backbone_note: Learned queries plus cross-attention that project variable-channel EEG into a fixed-size latent space.
+  pretraining_tags:
+  - topology-agnostic pretraining
+  - cross-attention pooling
+  pretraining_note: Emphasizes robustness to changing electrode layouts while decoupling computation from montage size.
+  finetuning_tags:
+  - full fine-tuning
+  finetuning_note: Adapted to clinical EEG tasks such as abnormality detection, with an emphasis on low FLOPs and low memory usage.
+  training_data_note: Based on heterogeneous EEG corpora such as TUEG and Siena, with the paper reporting 21,000+ hours of pretraining.
+  open_source: true
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: brainomni
+  name: BrainOmni
+  aliases: []
+  modality_group: eeg_multimodal
+  fm_category: general_purpose
+  survey_category: foundation_model
+  pub_status: conference
+  first_public_date: '2025-05-18'
+  venue_name: NeurIPS
+  venue_year: 2025
+  paper_url: https://openreview.net/forum?id=cjHQj0tCy6
+  code_url: https://github.com/OpenTSLab/BrainOmni
+  short_use_case: A multimodal brain foundation model for unified EEG and MEG modeling and cross-device generalization.
+  backbone_note: BrainTokenizer plus Sensor Encoder for unified encoding of sensor location, orientation, and type.
+  pretraining_tags:
+  - self-supervised pretraining
+  - discrete tokenization
+  - cross-modal alignment
+  pretraining_note: First quantizes heterogeneous EEG and MEG signals into discrete representations, then learns a unified semantic embedding space.
+  finetuning_tags:
+  - full fine-tuning
+  - linear evaluation
+  finetuning_note: Supports unified transfer on EEG and MEG downstream tasks, with explicit emphasis on generalization to unseen devices.
+  training_data_note: 1,997 hours of EEG plus 656 hours of MEG, explicitly covering multi-device and multimodal pretraining.
+  open_source: true
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: brant
+  name: BRANT
+  aliases:
+  - Brant
+  modality_group: intracranial_eeg
+  fm_category: modality_specific
+  survey_category: foundation_model
+  pub_status: conference
+  first_public_date: '2023-09-21'
+  venue_name: NeurIPS
+  venue_year: 2023
+  paper_url: https://proceedings.neurips.cc/paper_files/paper/2023/hash/5481f402672f3881426c92462fedd29e-Abstract-Conference.html
+  code_url:
+  short_use_case: A representative sEEG foundation model for large-scale intracranial neural signal modeling.
+  backbone_note: Large Transformer over time-frequency patches, at roughly the 500M-parameter scale.
+  pretraining_tags:
+  - masked patch prediction
+  - time-frequency modeling
+  pretraining_note: Uses masked patch prediction on contiguous time blocks to model high-sampling-rate sEEG patterns.
+  finetuning_tags:
+  - full fine-tuning
+  finetuning_note: Primarily transferred into intracranial neural decoding and related task heads.
+  training_data_note: About 2,528 hours of intracranial sEEG from 152 subjects, with the paper describing a scale of roughly 1.01 TB.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: brainstratify
+  name: BrainStratify
+  aliases: []
+  modality_group: intracranial_eeg
+  fm_category: task_oriented
+  survey_category: foundation_model
+  pub_status: preprint
+  first_public_date: '2025-05-26'
+  venue_name: arXiv preprint
+  venue_year:
+  paper_url: https://arxiv.org/abs/2505.20480
+  code_url:
+  short_use_case: A coarse-to-fine intracranial neural dynamics framework for speech decoding.
+  backbone_note: Spatial-context-guided temporal-spatial modeling + Decoupled Product Quantization.
+  pretraining_tags:
+  - coarse-to-fine disentanglement
+  - product quantization
+  pretraining_note: Uses coarse-to-fine functional grouping and neural-dynamics disentanglement to strengthen task-relevant intracranial representations.
+  finetuning_tags:
+  - task-specific decoding head
+  - full fine-tuning
+  finetuning_note: Adapted mainly toward speech perception and production decoding tasks.
+  training_data_note: Evaluated on two sEEG datasets plus one epidural ECoG dataset, focused on speech perception and production.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: brainwave
+  name: BrainWave
+  aliases:
+  - Brant-2
+  modality_group: eeg_multimodal
+  fm_category: general_purpose
+  survey_category: foundation_model
+  pub_status: preprint
+  first_public_date: '2024-02-15'
+  venue_name: arXiv preprint
+  venue_year:
+  paper_url: https://arxiv.org/abs/2402.10251
+  code_url: https://github.com/yzz673/Brant-2
+  short_use_case: A general brain-signal FM for both invasive and non-invasive electrical brain recordings.
+  backbone_note: Cross-domain electrical-brain foundation model emphasizing scale alignment and channel-agnostic transfer.
+  pretraining_tags:
+  - cross-modality pretraining
+  - scale alignment
+  - channel-agnostic modeling
+  pretraining_note: Jointly pretrained on EEG and sEEG to map different sampling rates and channel configurations into a shared representation space.
+  finetuning_tags:
+  - few-shot classification
+  - zero-shot transfer
+  - full fine-tuning
+  finetuning_note: Emphasizes few-shot and zero-shot transfer while still supporting task-specific adaptation.
+  training_data_note: 13.79 TB of electrical brain recordings, about 40,907 hours from 15,997 individuals, covering both EEG and sEEG.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: adagent
+  name: ADAgent
+  aliases: []
+  modality_group: multimodal_neuroimage
+  survey_category: system_llm
+  pub_status: preprint
+  first_public_date: '2025-06-11'
+  venue_name: arXiv preprint
+  venue_year:
+  paper_url: https://arxiv.org/abs/2506.11150
+  code_url:
+  short_use_case: An LLM-agent system for Alzheimer's disease analysis over multimodal neuroimaging evidence.
+  backbone_note: Multi-agent LLM workflow for Alzheimer's analysis with a collaborative coordinator over brain-imaging inputs.
+  pretraining_tags:
+  - llm agent orchestration
+  - multimodal reasoning
+  pretraining_note: The paper frames the system around coordinated LLM agents that reason over AD-related MRI and PET evidence.
+  finetuning_tags:
+  - workflow adaptation
+  - task prompting
+  finetuning_note: Adapted as an application-layer system for Alzheimer's analysis rather than a standalone modality encoder.
+  training_data_note: Built on ADNI data with T1-MRI and PET-FDG inputs for Alzheimer's disease analysis.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: anatcl
+  name: AnatCL
+  aliases: []
+  modality_group: brain_mri
+  survey_category: foundation_model
+  pub_status: preprint
+  first_public_date: '2024-08-07'
+  venue_name: arXiv preprint
+  venue_year:
+  paper_url: https://arxiv.org/abs/2408.07079
+  code_url:
+  short_use_case: An anatomical foundation model for structural brain MRI analysis.
+  backbone_note: Structural MRI foundation model centered on anatomical representation learning over atlas-aware brain images.
+  pretraining_tags:
+  - contrastive anatomical learning
+  - representation pretraining
+  pretraining_note: Pretrained to learn transferable structural MRI representations anchored by anatomical priors.
+  finetuning_tags:
+  - full fine-tuning
+  - transfer learning
+  finetuning_note: The pretrained encoder is adapted to downstream structural MRI analysis tasks through standard transfer setups.
+  training_data_note: Multiple MRI datasets organized with the Desikan-Killiany atlas.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: asd-chat
+  name: ASD-Chat
+  aliases: []
+  modality_group: clinical_text_behavior
+  survey_category: system_llm
+  pub_status: preprint
+  first_public_date: '2024-09-03'
+  venue_name: arXiv preprint
+  venue_year:
+  paper_url: https://arxiv.org/abs/2409.01867
+  code_url:
+  short_use_case: A dialogue intervention system for autism spectrum disorder support.
+  backbone_note: LLM-based intervention assistant grounded in VB-MAPP-style autism support workflows.
+  pretraining_tags:
+  - prompt-based intervention
+  - dialogue generation
+  pretraining_note: The system uses prompt-driven LLM interaction to structure autism-focused dialogue support.
+  finetuning_tags:
+  - domain adaptation
+  - dialogue tuning
+  finetuning_note: Adapted to autism intervention scenarios rather than neural-signal representation learning.
+  training_data_note: Built around clinical intervention data for autism support.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: atlasgpt
+  name: AtlasGPT
+  aliases: []
+  modality_group: clinical_text_behavior
+  survey_category: system_llm
+  pub_status: journal
+  first_public_date: '2024-05-01'
+  venue_name: Journal of Neurosurgery
+  venue_year: 2024
+  paper_url: https://doi.org/10.3171/2024.2.jns232997
+  code_url:
+  short_use_case: A neurosurgical clinical augmentation system with evidence-oriented question answering.
+  backbone_note: RAG-enhanced neurosurgical LLM system for clinical augmentation, planning, and performance support.
+  pretraining_tags:
+  - retrieval-augmented generation
+  - domain reasoning
+  pretraining_note: AtlasGPT combines LLM generation with curated neurosurgical content retrieval.
+  finetuning_tags:
+  - application tuning
+  - evaluation-time prompting
+  finetuning_note: Used as a neurosurgical support system evaluated in exam-style and adversarial settings.
+  training_data_note: Curated from Journal of Neurological Surgery Publishing Group articles and related neurosurgical references.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: brainbench
+  name: BrainBench
+  aliases: []
+  modality_group: clinical_text_behavior
+  survey_category: llm
+  pub_status: journal
+  first_public_date: '2024-11-27'
+  venue_name: Nature Human Behaviour
+  venue_year: 2024
+  paper_url: https://doi.org/10.1038/s41562-024-02046-9
+  code_url:
+  short_use_case: A neuroscience benchmarking study showing domain-specialized LLM evaluation over the literature.
+  backbone_note: Benchmark-oriented neuroscience LLM study focused on prediction tasks over published neuroscience findings.
+  pretraining_tags:
+  - domain language modeling
+  - benchmark evaluation
+  pretraining_note: The paper evaluates neuroscience-specialized LLM capability on literature-grounded prediction tasks.
+  finetuning_tags:
+  - domain adaptation
+  - task evaluation
+  finetuning_note: Used as a benchmark-centric LLM setup rather than a single modality encoder.
+  training_data_note: Neuroscience literature used for prediction-oriented benchmarking.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: brainclip
+  name: BrainCLIP
+  aliases: []
+  modality_group: fmri
+  survey_category: foundation_model
+  pub_status: journal
+  first_public_date: '2025-10-01'
+  venue_name: IEEE Transactions on Medical Imaging
+  venue_year: 2025
+  paper_url: https://doi.org/10.1109/tmi.2025.3537287
+  code_url:
+  short_use_case: A task-agnostic fMRI decoding model aligned with CLIP-style visual semantics.
+  backbone_note: CLIP-style representation model that aligns fMRI activity with visual semantic embeddings.
+  pretraining_tags:
+  - contrastive alignment
+  - vision-language transfer
+  pretraining_note: Learns generic visual-semantic brain representations by aligning fMRI responses with CLIP-like features.
+  finetuning_tags:
+  - decoder adaptation
+  - full fine-tuning
+  finetuning_note: Adapted for downstream visual decoding by transferring the aligned representation space.
+  training_data_note: fMRI recordings paired with visual-stimulus supervision.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: braindec
+  name: BrainDEC
+  aliases: []
+  modality_group: fmri
+  survey_category: framework_llm
+  pub_status: journal
+  first_public_date: '2026-03-01'
+  venue_name: Information Fusion
+  venue_year: 2026
+  paper_url: https://doi.org/10.1016/j.inffus.2025.103589
+  code_url:
+  short_use_case: A multimodal LLM framework for non-invasive decoding of spoken text from brain recordings.
+  backbone_note: Multimodal decoding framework that couples brain-recording representations with an LLM for text generation.
+  pretraining_tags:
+  - multimodal fusion
+  - llm-assisted decoding
+  pretraining_note: The framework links fMRI-derived features to language generation through a multimodal decoding stack.
+  finetuning_tags:
+  - task-specific decoding
+  - full fine-tuning
+  finetuning_note: Adapted toward non-invasive text decoding from brain-recording inputs.
+  training_data_note: Custom corpus with paired fMRI recordings and text-oriented supervision.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: brain-diffuser
+  name: Brain-Diffuser
+  aliases:
+  - BrainDiffuser
+  modality_group: fmri
+  survey_category: foundation_model
+  pub_status: journal
+  first_public_date: '2023-09-20'
+  venue_name: Scientific Reports
+  venue_year: 2023
+  paper_url: https://doi.org/10.1038/s41598-023-42891-8
+  code_url:
+  short_use_case: An fMRI-to-image reconstruction model built with latent diffusion.
+  backbone_note: Generative latent-diffusion pipeline for reconstructing visual scenes from fMRI signals.
+  pretraining_tags:
+  - diffusion modeling
+  - visual reconstruction
+  pretraining_note: Uses diffusion-based image generation conditioned on fMRI-derived representations.
+  finetuning_tags:
+  - reconstruction tuning
+  - full fine-tuning
+  finetuning_note: Optimized for natural-scene reconstruction from fMRI rather than broad downstream transfer.
+  training_data_note: Natural Scenes Dataset (NSD).
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: braingfm
+  name: BrainGFM
+  aliases: []
+  modality_group: fmri
+  survey_category: foundation_model
+  pub_status: preprint
+  first_public_date: '2025-05-31'
+  venue_name: arXiv preprint
+  venue_year:
+  paper_url: https://arxiv.org/abs/2506.02044
+  code_url:
+  short_use_case: A graph-based fMRI foundation model for broad atlas- and disorder-level transfer.
+  backbone_note: Brain graph foundation model with prompt-tuning support across atlases and disorders.
+  pretraining_tags:
+  - graph pretraining
+  - prompt tuning
+  pretraining_note: Pretrained to learn transferable graph-level brain representations over large fMRI cohorts.
+  finetuning_tags:
+  - prompt tuning
+  - full fine-tuning
+  finetuning_note: Supports lightweight prompt-based adaptation as well as full downstream fine-tuning.
+  training_data_note: 27 datasets covering 25,000+ subjects and around 60,000 fMRI scans.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: braingpt
+  name: BrainGPT
+  aliases: []
+  modality_group: clinical_text_behavior
+  survey_category: llm
+  pub_status: journal
+  first_public_date: '2024-11-27'
+  venue_name: Nature Human Behaviour
+  venue_year: 2024
+  paper_url: https://doi.org/10.1038/s41562-024-02046-9
+  code_url:
+  short_use_case: A neuroscience-focused LLM variant reported for literature-grounded neurosurgical and neuroscience applications.
+  backbone_note: Domain-specialized LLM setup introduced within the broader BrainBench-style neuroscience evaluation paper.
+  pretraining_tags:
+  - domain language modeling
+  - literature adaptation
+  pretraining_note: Built around large-scale neuroscience text modeling with approximately 1.3B tokens of literature.
+  finetuning_tags:
+  - domain adaptation
+  - task prompting
+  finetuning_note: Used as a neuroscience-specialized LLM for downstream evaluation and application-oriented prompting.
+  training_data_note: Approximately 1.3B tokens from neuroscience literature.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: brainiac
+  name: BrainIAC
+  aliases: []
+  modality_group: brain_mri
+  survey_category: foundation_model
+  pub_status: preprint
+  first_public_date: '2024-12-03'
+  venue_name: medRxiv preprint
+  venue_year:
+  paper_url: https://doi.org/10.1101/2024.12.02.24317992
+  code_url:
+  short_use_case: A general-purpose foundation model for structural brain MRI analysis.
+  backbone_note: Brain MRI foundation model designed for generalized representation learning across heterogeneous cohorts.
+  pretraining_tags:
+  - representation pretraining
+  - transfer learning
+  pretraining_note: The model is pretrained to support broad MRI transfer rather than a single downstream task.
+  finetuning_tags:
+  - full fine-tuning
+  - transfer learning
+  finetuning_note: Adapted across downstream MRI analysis settings through conventional task-specific transfer.
+  training_data_note: 48,519 brain MRIs collected from 35 datasets.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: brainlm
+  name: BrainLM
+  aliases: []
+  modality_group: fmri
+  survey_category: foundation_model
+  pub_status: preprint
+  first_public_date: '2023-09-13'
+  venue_name: bioRxiv preprint
+  venue_year:
+  paper_url: https://doi.org/10.1101/2023.09.12.557460
+  code_url:
+  short_use_case: A foundation model for modeling brain activity dynamics from large-scale fMRI.
+  backbone_note: Brain-activity foundation model for long-context dynamics modeling over large fMRI recordings.
+  pretraining_tags:
+  - dynamics modeling
+  - representation pretraining
+  pretraining_note: Pretrained on large fMRI corpora to capture transferable temporal brain-activity structure.
+  finetuning_tags:
+  - full fine-tuning
+  - prediction transfer
+  finetuning_note: Adapted to downstream dynamics prediction and related brain-state modeling tasks.
+  training_data_note: UK Biobank and HCP recordings spanning roughly 6,700 hours of fMRI data.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: brainsegfounder
+  name: BrainSegFounder
+  aliases: []
+  modality_group: brain_mri
+  survey_category: foundation_model
+  pub_status: journal
+  first_public_date: '2024-10-01'
+  venue_name: Medical Image Analysis
+  venue_year: 2024
+  paper_url: https://doi.org/10.1016/j.media.2024.103301
+  code_url:
+  short_use_case: A 3D foundation model for multimodal neuroimage segmentation.
+  backbone_note: 3D neuroimage foundation model tailored to segmentation across heterogeneous brain-imaging inputs.
+  pretraining_tags:
+  - 3d representation learning
+  - segmentation pretraining
+  pretraining_note: Pretrained to transfer across multiple neuroimage segmentation datasets and imaging protocols.
+  finetuning_tags:
+  - full fine-tuning
+  - segmentation adaptation
+  finetuning_note: Tuned toward segmentation tasks over varied clinical neuroimaging benchmarks.
+  training_data_note: UK Biobank, BraTS, and ATLAS v2.0 with large-scale multimodal neuroimaging supervision.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: brivl
+  name: BriVL
+  aliases: []
+  modality_group: multimodal_neuroimage
+  survey_category: foundation_model
+  pub_status: preprint
+  first_public_date: '2022-08-17'
+  venue_name: arXiv preprint
+  venue_year:
+  paper_url: https://arxiv.org/abs/2208.08263
+  code_url:
+  short_use_case: A multimodal foundation model used to study links between vision-language models and human-brain signals.
+  backbone_note: Vision-language foundation model analyzed for its ability to simulate human-brain representations.
+  pretraining_tags:
+  - multimodal pretraining
+  - vision-language alignment
+  pretraining_note: Pretrained on large image-text corpora and then studied against fMRI-aligned neural signals.
+  finetuning_tags:
+  - representation transfer
+  - zero-shot evaluation
+  finetuning_note: Used mainly as a multimodal representation backbone for neural-encoding style comparisons.
+  training_data_note: RUC-CAS-WenLan with 30M image-text pairs, together with fMRI evaluation data.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: centaur
+  name: Centaur
+  aliases: []
+  modality_group: clinical_text_behavior
+  survey_category: foundation_model
+  pub_status: preprint
+  first_public_date: '2024-10-26'
+  venue_name: arXiv preprint
+  venue_year:
+  paper_url: https://arxiv.org/abs/2410.20268
+  code_url:
+  short_use_case: A foundation model of human cognition used for large-scale behavior prediction.
+  backbone_note: Cognition-focused foundation model designed to capture large-scale patterns in human behavioral data.
+  pretraining_tags:
+  - behavior modeling
+  - foundation pretraining
+  pretraining_note: Pretrained to model broad human-cognition and behavior signals rather than a single neuroscience modality.
+  finetuning_tags:
+  - task adaptation
+  - full fine-tuning
+  finetuning_note: Adapted to downstream behavior-prediction settings described in the paper.
+  training_data_note: Psych-101 with more than 60,000 participants.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: deepcntd-net
+  name: DeepCNTD-Net
+  aliases: []
+  modality_group: head_ct
+  survey_category: foundation_model
+  pub_status: preprint
+  first_public_date: '2025-02-28'
+  venue_name: arXiv preprint
+  venue_year:
+  paper_url: https://arxiv.org/abs/2502.21106
+  code_url:
+  short_use_case: A 3D foundation model for multilabel neurotrauma detection in non-contrast head CT.
+  backbone_note: Non-contrast head-CT foundation model for broad neurotrauma triage and detection.
+  pretraining_tags:
+  - 3d pretraining
+  - radiology transfer
+  pretraining_note: Pretrained to support general neurotrauma triage across large-scale head-CT cohorts.
+  finetuning_tags:
+  - full fine-tuning
+  - detection adaptation
+  finetuning_note: Adapted to multilabel CT-based neurotrauma detection tasks.
+  training_data_note: Large non-contrast head-CT imaging cohorts with multicenter neurotrauma supervision.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: dect
+  name: DECT
+  aliases: []
+  modality_group: clinical_text_behavior
+  survey_category: framework_llm
+  pub_status: preprint
+  first_public_date: '2025-02-06'
+  venue_name: arXiv preprint
+  venue_year:
+  paper_url: https://arxiv.org/abs/2502.04394
+  code_url:
+  short_use_case: An LLM-assisted framework for Alzheimer's diagnosis from speech and transcript features.
+  backbone_note: Diagnostic framework that mixes LLM-assisted linguistic knowledge with generated dialogue data.
+  pretraining_tags:
+  - llm-assisted data generation
+  - linguistic feature modeling
+  pretraining_note: Uses fine-grained linguistic knowledge plus label-switched and label-preserved data generation.
+  finetuning_tags:
+  - diagnostic adaptation
+  - full fine-tuning
+  finetuning_note: Adapted to Alzheimer's disease diagnosis over speech recordings and transcripts.
+  training_data_note: ADReSSo speech recordings and transcripts for Alzheimer's diagnosis.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: episemollm
+  name: EpiSemoLLM
+  aliases: []
+  modality_group: clinical_text_behavior
+  survey_category: llm
+  pub_status: preprint
+  first_public_date: '2024-05-27'
+  venue_name: medRxiv preprint
+  venue_year:
+  paper_url: https://doi.org/10.1101/2024.05.26.24307955
+  code_url:
+  short_use_case: A fine-tuned LLM for epileptogenic zone localization from seizure semiology.
+  backbone_note: Domain-specialized LLM for mapping seizure descriptions into epileptogenic-zone hypotheses.
+  pretraining_tags:
+  - llm fine-tuning
+  - clinical text modeling
+  pretraining_note: Fine-tuned on curated seizure-semiology descriptions paired with localization labels.
+  finetuning_tags:
+  - domain adaptation
+  - clinical inference
+  finetuning_note: Adapted toward epileptogenic-zone localization rather than general dialogue generation.
+  training_data_note: Collected seizure-semiology descriptions paired with localization supervision.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: exkg-llm
+  name: ExKG-LLM
+  aliases: []
+  modality_group: clinical_text_behavior
+  survey_category: framework_llm
+  pub_status: preprint
+  first_public_date: '2025-03-09'
+  venue_name: arXiv preprint
+  venue_year:
+  paper_url: https://arxiv.org/abs/2503.06479
+  code_url:
+  short_use_case: A framework for automated expansion of cognitive-neuroscience knowledge graphs with LLMs.
+  backbone_note: Knowledge-graph expansion framework that couples an LLM with cognitive-neuroscience graph construction.
+  pretraining_tags:
+  - knowledge graph integration
+  - llm-assisted extraction
+  pretraining_note: Uses LLMs to extract and expand structured neuroscience relations from papers and reports.
+  finetuning_tags:
+  - schema adaptation
+  - task prompting
+  finetuning_note: Adapted to automated KG expansion rather than direct neural-data prediction.
+  training_data_note: Scientific papers and clinical reports used for cognitive-neuroscience knowledge expansion.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: fm-hct
+  name: FM-HCT
+  aliases: []
+  modality_group: head_ct
+  survey_category: foundation_model
+  pub_status: preprint
+  first_public_date: '2025-02-04'
+  venue_name: arXiv preprint
+  venue_year:
+  paper_url: https://arxiv.org/abs/2502.02779
+  code_url:
+  short_use_case: A 3D foundation model for generalizable disease detection in head CT.
+  backbone_note: 3D head-CT foundation model for broad radiology transfer and disease detection.
+  pretraining_tags:
+  - 3d pretraining
+  - radiology transfer
+  pretraining_note: Pretrained on large head-CT corpora to support generalizable detection across sites.
+  finetuning_tags:
+  - full fine-tuning
+  - disease detection
+  finetuning_note: Tuned toward downstream disease-detection tasks in head computed tomography.
+  training_data_note: 361,663 non-contrast 3D head CT scans.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: hybridtransnet
+  name: HybridTransNet
+  aliases: []
+  modality_group: brain_mri
+  survey_category: foundation_model
+  pub_status: journal
+  first_public_date: '2025-09-01'
+  venue_name: IEEE Journal of Biomedical and Health Informatics
+  venue_year: 2024
+  paper_url: https://doi.org/10.1109/jbhi.2024.3481412
+  code_url:
+  short_use_case: A hybrid-transformer model for brain-tumor delineation and clinical diagnosis support.
+  backbone_note: Hybrid transformer architecture used for medical-image diagnosis and boundary delineation.
+  pretraining_tags:
+  - hybrid transformer
+  - medical image modeling
+  pretraining_note: Combines transformer-style contextual modeling with clinical imaging workflows.
+  finetuning_tags:
+  - full fine-tuning
+  - diagnostic adaptation
+  finetuning_note: Adapted to brain-tumor-related diagnosis and delineation settings.
+  training_data_note: Medical imaging datasets used for diagnostic and boundary-delineation evaluation.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: ireportmed
+  name: iReportMed
+  aliases: []
+  modality_group: brain_mri
+  survey_category: system_llm
+  pub_status: conference
+  first_public_date: '2025-04-14'
+  venue_name: IEEE International Symposium on Biomedical Imaging (ISBI)
+  venue_year: 2025
+  paper_url: https://doi.org/10.1109/isbi60581.2025.10981080
+  code_url:
+  short_use_case: A hybrid MRI-plus-LLM system for automatic brain-tumor diagnostic reports.
+  backbone_note: Reporting pipeline that combines multimodal MRI features with an LLM for diagnostic report generation.
+  pretraining_tags:
+  - multimodal report generation
+  - llm integration
+  pretraining_note: Couples MRI feature extraction with an LLM-based reporting stage.
+  finetuning_tags:
+  - report-generation tuning
+  - task adaptation
+  finetuning_note: Adapted for automatic brain-tumor reporting rather than general-purpose neuroimage transfer.
+  training_data_note: Around 378 brain-tumor MRI cases including UCSF-PDGM and clinical samples.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: mental-llm
+  name: Mental-LLM
+  aliases: []
+  modality_group: clinical_text_behavior
+  survey_category: system_llm
+  pub_status: journal
+  first_public_date: '2023-07-26'
+  venue_name: Proceedings of the ACM on Interactive, Mobile, Wearable and Ubiquitous Technologies
+  venue_year: 2024
+  paper_url: https://arxiv.org/abs/2307.14385
+  code_url:
+  short_use_case: An LLM-based system for mental-health prediction from online text.
+  backbone_note: GPT-style mental-health prediction system built over online text data and behavioral language signals.
+  pretraining_tags:
+  - language modeling
+  - online text adaptation
+  pretraining_note: The system leverages large language models for mental-health prediction over social-text inputs.
+  finetuning_tags:
+  - domain adaptation
+  - diagnosis-oriented prompting
+  finetuning_note: Adapted to mental-health status prediction rather than general conversational use.
+  training_data_note: Online text and social-media style data for mental-health prediction.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: mindbridge
+  name: MindBridge
+  aliases: []
+  modality_group: fmri
+  survey_category: foundation_model
+  pub_status: conference
+  first_public_date: '2024-06-16'
+  venue_name: IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)
+  venue_year: 2024
+  paper_url: https://doi.org/10.1109/cvpr52733.2024.01077
+  code_url:
+  short_use_case: A cross-subject brain-decoding framework for visual reconstruction from fMRI.
+  backbone_note: Cross-subject brain-decoding framework designed to bridge subject-specific gaps in fMRI reconstruction.
+  pretraining_tags:
+  - cross-subject alignment
+  - representation transfer
+  pretraining_note: Learns subject-bridging representations so decoding can transfer across individuals.
+  finetuning_tags:
+  - decoder adaptation
+  - full fine-tuning
+  finetuning_note: Adapted to downstream visual reconstruction under cross-subject settings.
+  training_data_note: Multi-subject fMRI datasets with visual-stimulus supervision.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: mindeye
+  name: MindEye
+  aliases: []
+  modality_group: fmri
+  survey_category: foundation_model
+  pub_status: conference
+  first_public_date: '2023-05-29'
+  venue_name: NeurIPS
+  venue_year: 2023
+  paper_url: https://arxiv.org/abs/2305.18274
+  code_url:
+  short_use_case: An fMRI-to-image reconstruction model using contrastive learning and diffusion priors.
+  backbone_note: Vision-decoding pipeline that combines contrastive learning with diffusion priors for image reconstruction.
+  pretraining_tags:
+  - contrastive learning
+  - diffusion prior
+  pretraining_note: Learns aligned fMRI-image representations and then uses diffusion-style priors for reconstruction.
+  finetuning_tags:
+  - reconstruction tuning
+  - full fine-tuning
+  finetuning_note: Adapted to visual reconstruction from fMRI rather than broad multitask transfer.
+  training_data_note: Natural-scenes image-fMRI datasets with subject-specific visual supervision.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: mindeye2
+  name: MindEye2
+  aliases: []
+  modality_group: fmri
+  survey_category: foundation_model
+  pub_status: preprint
+  first_public_date: '2024-03-17'
+  venue_name: arXiv preprint
+  venue_year:
+  paper_url: https://arxiv.org/abs/2403.11207
+  code_url:
+  short_use_case: A shared-subject fMRI-to-image model that reduces training-data requirements.
+  backbone_note: Shared-subject reconstruction model that pushes fMRI-to-image decoding toward low-data regimes.
+  pretraining_tags:
+  - shared-subject pretraining
+  - visual reconstruction
+  pretraining_note: Uses shared-subject modeling to improve reconstruction efficiency and reduce per-subject data needs.
+  finetuning_tags:
+  - reconstruction tuning
+  - low-data adaptation
+  finetuning_note: Adapted to image reconstruction with substantially less subject-specific training time.
+  training_data_note: Natural-scenes image-fMRI datasets with a low-data, shared-subject reconstruction setup.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: mind-vis
+  name: MinD-Vis
+  aliases:
+  - Mind-Vis
+  modality_group: fmri
+  survey_category: foundation_model
+  pub_status: conference
+  first_public_date: '2023-06-01'
+  venue_name: IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)
+  venue_year: 2023
+  paper_url: https://doi.org/10.1109/cvpr52729.2023.02175
+  code_url:
+  short_use_case: A diffusion-based vision-decoding model with sparse masked modeling for fMRI.
+  backbone_note: Conditional diffusion reconstruction model strengthened by sparse masked modeling for vision decoding.
+  pretraining_tags:
+  - conditional diffusion
+  - sparse masked modeling
+  pretraining_note: Couples sparse masked pretraining with diffusion-based decoding of visual content from fMRI.
+  finetuning_tags:
+  - reconstruction tuning
+  - decoder adaptation
+  finetuning_note: Tuned for fMRI-based visual stimulus decoding and image reconstruction.
+  training_data_note: About 136,000 fMRI samples from 1,205 subjects.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: mslesionllm
+  name: MsLesionLLM
+  aliases: []
+  modality_group: clinical_text_behavior
+  survey_category: system_llm
+  pub_status: journal
+  first_public_date: '2025-04-08'
+  venue_name: Neurology
+  venue_year: 2025
+  paper_url: https://doi.org/10.1212/wnl.0000000000212366
+  code_url:
+  short_use_case: An LLM-based tool for extracting lesion metrics from multiple-sclerosis MRI reports.
+  backbone_note: Report-understanding system that classifies free-text MRI reports to recover MS lesion information.
+  pretraining_tags:
+  - report understanding
+  - llm classification
+  pretraining_note: Built around prompt- or fine-tuned LLM classification of clinical MRI report text.
+  finetuning_tags:
+  - task adaptation
+  - report extraction
+  finetuning_note: Adapted to extract structured lesion metrics from real-world radiology narratives.
+  training_data_note: Clinical MRI report text from real-world multiple-sclerosis datasets.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: multivit
+  name: MultiViT
+  aliases: []
+  modality_group: multimodal_neuroimage
+  survey_category: foundation_model
+  pub_status: journal
+  first_public_date: '2023-07-18'
+  venue_name: Human Brain Mapping
+  venue_year: 2024
+  paper_url: https://doi.org/10.1002/hbm.26783
+  code_url:
+  short_use_case: A multimodal vision transformer for interpretable fusion of structural and functional neuroimaging.
+  backbone_note: Vision Transformer for interpretable fusion of structural and functional brain data.
+  pretraining_tags:
+  - multimodal fusion
+  - transformer pretraining
+  pretraining_note: Learns joint representations across structural and functional neuroimaging streams.
+  finetuning_tags:
+  - diagnosis adaptation
+  - full fine-tuning
+  finetuning_note: Adapted to schizophrenia-related diagnosis and multimodal interpretation settings.
+  training_data_note: Multi-site MRI data spanning about 2,130 subjects.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: mdd-llm
+  name: MDD-LLM
+  aliases: []
+  modality_group: clinical_text_behavior
+  survey_category: llm
+  pub_status: journal
+  first_public_date: '2025-11-01'
+  venue_name: Journal of Affective Disorders
+  venue_year: 2025
+  paper_url: https://doi.org/10.1016/j.jad.2025.119774
+  code_url:
+  short_use_case: An LLM for major depressive disorder diagnosis at large scale.
+  backbone_note: Diagnostic LLM specialized for major depressive disorder prediction from population-scale records.
+  pretraining_tags:
+  - llm fine-tuning
+  - diagnosis modeling
+  pretraining_note: Adapts large language modeling toward MDD-related diagnostic prediction tasks.
+  finetuning_tags:
+  - domain adaptation
+  - clinical inference
+  finetuning_note: Fine-tuned for major depressive disorder diagnosis rather than general dialogue.
+  training_data_note: UK Biobank records, with about 274,348 samples.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: neura
+  name: Neura
+  aliases: []
+  modality_group: clinical_text_behavior
+  survey_category: llm
+  pub_status: preprint
+  first_public_date: '2024-02-13'
+  venue_name: medRxiv preprint
+  venue_year:
+  paper_url: https://doi.org/10.1101/2024.02.11.24302658
+  code_url:
+  short_use_case: A specialized neurology LLM for domain-focused clinical use.
+  backbone_note: Neurology-specialized LLM intended for clinical and knowledge-oriented domain interaction.
+  pretraining_tags:
+  - domain language modeling
+  - medical adaptation
+  pretraining_note: Built as a neurology-specialized LLM over a neurological text corpus.
+  finetuning_tags:
+  - domain adaptation
+  - application prompting
+  finetuning_note: Adapted to neurology-specific use rather than general-purpose assistant behavior.
+  training_data_note: Neurological text corpus and related neurology knowledge sources.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: neurogpt-x
+  name: NeuroGPT-X
+  aliases:
+  - neuroGPT-X
+  modality_group: clinical_text_behavior
+  survey_category: system_llm
+  pub_status: journal
+  first_public_date: '2024-04-01'
+  venue_name: Journal of Neurosurgery
+  venue_year: 2024
+  paper_url: https://doi.org/10.3171/2023.7.jns23573
+  code_url:
+  short_use_case: A clinic-oriented neurosurgical decision-support system with retrieval-enhanced LLM reasoning.
+  backbone_note: Context-enriched neurosurgical LLM system with citation-facing support for vestibular-schwannoma management.
+  pretraining_tags:
+  - retrieval-augmented generation
+  - clinical decision support
+  pretraining_note: Combines LLM generation with curated medical retrieval for clinic-oriented decision support.
+  finetuning_tags:
+  - application tuning
+  - expert-evaluation prompting
+  finetuning_note: Evaluated as a specialized support system rather than a foundation encoder.
+  training_data_note: PubMed abstracts, Wikipedia pages, and curated neurosurgical knowledge.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: neuropictor
+  name: NeuroPictor
+  aliases: []
+  modality_group: fmri
+  survey_category: foundation_model
+  pub_status: conference
+  first_public_date: '2024-10-29'
+  venue_name: European Conference on Computer Vision (ECCV)
+  venue_year: 2024
+  paper_url: https://doi.org/10.1007/978-3-031-72983-6_4
+  code_url:
+  short_use_case: An fMRI-to-image reconstruction model with multi-individual pretraining and multilevel modulation.
+  backbone_note: Reconstruction model that refines fMRI-to-image decoding through multi-individual pretraining and modulation layers.
+  pretraining_tags:
+  - multi-individual pretraining
+  - multilevel modulation
+  pretraining_note: Uses multi-individual pretraining to improve representation reuse for fMRI-based image reconstruction.
+  finetuning_tags:
+  - reconstruction tuning
+  - full fine-tuning
+  finetuning_note: Adapted to image reconstruction with explicit semantic-control refinements.
+  training_data_note: Around 67,000 paired fMRI-image samples.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: lamim
+  name: LaMIM
+  aliases: []
+  modality_group: brain_mri
+  survey_category: foundation_model
+  pub_status: journal
+  first_public_date: '2025-02-03'
+  venue_name: Journal of Magnetic Resonance Imaging
+  venue_year: 2025
+  paper_url: https://doi.org/10.1002/jmri.29734
+  code_url:
+  short_use_case: A self-supervised vision foundation strategy for postencephalitic epilepsy analysis on multicontrast brain MRI.
+  backbone_note: Large self-supervised vision foundation model applied to multicontrast whole-brain MRI.
+  pretraining_tags:
+  - self-supervised vision pretraining
+  - multicontrast MRI modeling
+  pretraining_note: Pretrained on multicontrast whole-brain MRI to support epilepsy-related downstream analysis.
+  finetuning_tags:
+  - disease-specific adaptation
+  - full fine-tuning
+  finetuning_note: Adapted to postencephalitic epilepsy analysis rather than broad neuroimage transfer.
+  training_data_note: 57,621 multicontrast whole-brain MRI scans.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: pkg-llm
+  name: PKG-LLM
+  aliases: []
+  modality_group: clinical_text_behavior
+  survey_category: framework_llm
+  pub_status: preprint
+  first_public_date: '2025-02-20'
+  venue_name: Preprints preprint
+  venue_year:
+  paper_url: https://doi.org/10.20944/preprints202502.0982.v1
+  code_url:
+  short_use_case: A knowledge-graph-plus-LLM framework for predicting GAD and MDD.
+  backbone_note: Cognitive-neuroscience framework that couples knowledge graphs with LLM reasoning for mental-health prediction.
+  pretraining_tags:
+  - knowledge graph integration
+  - llm reasoning
+  pretraining_note: Uses domain knowledge graphs to structure LLM-based mental-health prediction.
+  finetuning_tags:
+  - task adaptation
+  - prediction prompting
+  finetuning_note: Adapted to GAD and MDD prediction rather than direct neural-signal decoding.
+  training_data_note: NeuroLex and NeuroMorpho databases together with cognitive-neuroscience knowledge resources.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: poyo
+  name: POYO
+  aliases: []
+  modality_group: spike
+  survey_category: foundation_model
+  pub_status: conference
+  first_public_date: '2023-10-24'
+  venue_name: NeurIPS
+  venue_year: 2023
+  paper_url: https://proceedings.neurips.cc/paper_files/paper/2023/hash/8ca113d122584f12a6727341aaf58887-Abstract-Conference.html
+  code_url:
+  short_use_case: A unified, scalable model for neural-population decoding from spike data.
+  backbone_note: PerceiverIO-style neural-population decoder built around spike-token representations.
+  pretraining_tags:
+  - spike tokenization
+  - cross-attention decoding
+  pretraining_note: Models spike events as tokens and aggregates them into scalable latent representations for decoding.
+  finetuning_tags:
+  - session adaptation
+  - decoder transfer
+  finetuning_note: Supports lightweight adaptation across sessions and behavioral decoding tasks.
+  training_data_note: More than 158 sessions and 27,373 neural units.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: promind-llm
+  name: ProMind-LLM
+  aliases: []
+  modality_group: clinical_text_behavior
+  survey_category: system_llm
+  pub_status: preprint
+  first_public_date: '2025-05-20'
+  venue_name: arXiv preprint
+  venue_year:
+  paper_url: https://arxiv.org/abs/2505.14038
+  code_url:
+  short_use_case: A proactive mental-health system that combines sensor data with causal LLM reasoning.
+  backbone_note: Sensor-aware mental-health system that uses an LLM layer for proactive causal reasoning.
+  pretraining_tags:
+  - sensor-text fusion
+  - causal reasoning
+  pretraining_note: Integrates wearable or behavioral signals with LLM-based causal reasoning for proactive support.
+  finetuning_tags:
+  - system adaptation
+  - task prompting
+  finetuning_note: Adapted to psychiatric evaluation and proactive care rather than general text generation.
+  training_data_note: PMData and Globem datasets.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: shade-ad
+  name: SHADE-AD
+  aliases: []
+  modality_group: clinical_text_behavior
+  survey_category: framework_llm
+  pub_status: conference
+  first_public_date: '2025-05-06'
+  venue_name: ACM Conference on Embedded Networked Sensor Systems (SenSys)
+  venue_year: 2025
+  paper_url: https://doi.org/10.1145/3715014.3722062
+  code_url:
+  short_use_case: An LLM framework for synthesizing Alzheimer's-disease activity data as human-behavior videos.
+  backbone_note: Prompt-driven generation framework for Alzheimer's-specific human-activity simulation.
+  pretraining_tags:
+  - prompt-based generation
+  - synthetic activity modeling
+  pretraining_note: Uses prompting to synthesize AD-relevant activity data rather than to encode brain signals directly.
+  finetuning_tags:
+  - framework adaptation
+  - dataset generation
+  finetuning_note: Applied as a data-synthesis framework for downstream Alzheimer's analysis tasks.
+  training_data_note: NTU RGB+D 120 activity data.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: socialrecnet
+  name: SocialRecNet
+  aliases: []
+  modality_group: clinical_text_behavior
+  survey_category: framework_llm
+  pub_status: conference
+  first_public_date: '2025-04-06'
+  venue_name: IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)
+  venue_year: 2025
+  paper_url: https://doi.org/10.1109/icassp49660.2025.10888811
+  code_url:
+  short_use_case: A multimodal LLM framework for assessing social reciprocity in autism spectrum disorder.
+  backbone_note: Speech-plus-text LLM framework for autism-related social-reciprocity assessment.
+  pretraining_tags:
+  - multimodal llm integration
+  - speech-text fusion
+  pretraining_note: Integrates speech and text signals into an LLM-based assessment framework.
+  finetuning_tags:
+  - task adaptation
+  - score prediction
+  finetuning_note: Adapted to predict ASD social-reciprocity scores rather than generic conversation.
+  training_data_note: Speech and text data for autism-spectrum-disorder assessment.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: trust
+  name: TRUST
+  aliases: []
+  modality_group: clinical_text_behavior
+  survey_category: system_llm
+  pub_status: preprint
+  first_public_date: '2025-04-30'
+  venue_name: arXiv preprint
+  venue_year:
+  paper_url: https://arxiv.org/abs/2504.21851
+  code_url:
+  short_use_case: An LLM-based dialogue system for trauma understanding and structured PTSD assessments.
+  backbone_note: Multi-module dialogue system that uses an LLM to structure trauma interviews and assessments.
+  pretraining_tags:
+  - llm dialogue system
+  - structured assessment
+  pretraining_note: Built around cooperative LLM modules for trauma-oriented dialogue and assessment workflows.
+  finetuning_tags:
+  - application tuning
+  - dialogue prompting
+  finetuning_note: Adapted to PTSD-oriented clinical dialogue rather than general-purpose assistant use.
+  training_data_note: Clinical interview dialogue text used for trauma understanding and structured assessment.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: vs-llm
+  name: VS-LLM
+  aliases: []
+  modality_group: clinical_text_behavior
+  survey_category: system_llm
+  pub_status: preprint
+  first_public_date: '2025-08-07'
+  venue_name: arXiv preprint
+  venue_year:
+  paper_url: https://arxiv.org/abs/2508.05299
+  code_url:
+  short_use_case: A visual-semantic LLM system for depression assessment from therapy sketches.
+  backbone_note: Vision-language LLM pipeline for interpreting drawing-test sketches and stroke sequences.
+  pretraining_tags:
+  - vision-language modeling
+  - depression assessment
+  pretraining_note: Couples sketch understanding with LLM-based semantic assessment of depressive signals.
+  finetuning_tags:
+  - application tuning
+  - multimodal prompting
+  finetuning_note: Adapted to drawing-test based depression assessment rather than free-form generation.
+  training_data_note: PPAT drawing-test sketches and stroke-sequence data.
+  open_source: false
+  seed_source: 'Yang et al., Large-Scale Foundation Models and AI Systems for Neuroscience: A Comprehensive Review (arXiv:2510.16658)'
+  updated_date: '2026-05-11'
+- id: brainbert
+  name: BrainBERT
+  aliases:
+  - BRAINBERT
+  modality_group: intracranial_eeg
+  fm_category: modality_specific
+  survey_category: foundation_model
+  pub_status: conference
+  first_public_date: '2023-02-01'
+  venue_name: ICLR
+  venue_year: 2023
+  paper_url: https://openreview.net/forum?id=xmcYx_reUn6
+  code_url: https://github.com/czlwang/BrainBERT
+  short_use_case: A reusable intracranial foundation model for neural decoding with transfer to new subjects and electrode layouts.
+  backbone_note: Transformer encoder over channel-wise time-frequency representations with masked reconstruction.
+  pretraining_tags:
+  - masked time-frequency modeling
+  - self-supervised learning
+  pretraining_note: Pretrained on unannotated iEEG spectrogram-style inputs to learn contextual neural representations.
+  finetuning_tags:
+  - full fine-tuning
+  - linear probe
+  finetuning_note: Supports both linear evaluation and task-specific fine-tuning for downstream decoding tasks.
+  training_data_note: Large unannotated intracranial recording corpora with downstream evaluations on speech and movie-related neural decoding tasks.
+  open_source: true
+  seed_source: 'Brain Foundation Models: A Survey on Advancements in Neural Signal Processing and Brain Discovery (arXiv:2503.00580); Foundation Models for Brain Signals: A Critical Review of Current Progress and Future Directions (arXiv:2507.11783)'
+  updated_date: '2026-05-11'
+- id: biot
+  name: BIOT
+  aliases:
+  - Biosignal Transformer
+  modality_group: eeg
+  fm_category: general_purpose
+  survey_category: foundation_model
+  pub_status: conference
+  first_public_date: '2023-05-10'
+  venue_name: NeurIPS
+  venue_year: 2023
+  paper_url: https://proceedings.neurips.cc/paper_files/paper/2023/hash/f6b30f3e2dd9cb53bbf2024402d02295-Abstract-Conference.html
+  code_url: https://github.com/ycq091044/BIOT
+  short_use_case: A cross-data biosignal foundation encoder that transfers across heterogeneous EEG and related biosignal datasets.
+  backbone_note: Biosignal Transformer that tokenizes each channel into segment-level sentence tokens and uses lightweight sequence modeling.
+  pretraining_tags:
+  - contrastive learning
+  - cross-data pretraining
+  - multi-dataset biosignal modeling
+  pretraining_note: Pretrained across heterogeneous biosignal sources to handle variable channels, lengths, and missing values.
+  finetuning_tags:
+  - full fine-tuning
+  - cross-dataset transfer
+  finetuning_note: Fine-tuned on multiple downstream clinical tasks including seizure detection, seizure typing, and EEG event classification.
+  training_data_note: Mixed EEG, ECG, and human-activity sensory datasets with cross-data pretraining centered on biosignal transfer.
+  open_source: true
+  seed_source: 'Foundation Models for Brain Signals: A Critical Review of Current Progress and Future Directions (arXiv:2507.11783)'
+  updated_date: '2026-05-11'
+- id: mbrain
+  name: MBrain
+  aliases: []
+  modality_group: eeg_multimodal
+  fm_category: modality_specific
+  survey_category: foundation_model
+  pub_status: conference
+  first_public_date: '2023-06-15'
+  venue_name: ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD)
+  venue_year: 2023
+  paper_url: https://doi.org/10.1145/3580305.3599426
+  code_url:
+  short_use_case: A self-supervised framework that jointly pretrains EEG and SEEG representations for seizure-related downstream tasks.
+  backbone_note: Multi-channel encoder with graph-structured spatial modeling and temporal predictive objectives.
+  pretraining_tags:
+  - contrastive predictive coding
+  - graph-based spatial modeling
+  - self-supervised learning
+  pretraining_note: Learns channel relationships with multi-channel CPC together with instantaneous and delayed time-shift prediction tasks.
+  finetuning_tags:
+  - full fine-tuning
+  - seizure detection transfer
+  finetuning_note: Adapted to downstream seizure detection after self-supervised pretraining on both invasive and non-invasive brain signals.
+  training_data_note: Large-scale real-world EEG and SEEG seizure datasets.
+  open_source: false
+  updated_date: '2026-05-11'
+- id: metsk
+  name: MeTSK
+  aliases:
+  - Meta Transfer of Self-Supervised Knowledge
+  modality_group: fmri
+  survey_category: foundation_model
+  pub_status: preprint
+  first_public_date: '2023-12-21'
+  venue_name: arXiv preprint
+  venue_year:
+  paper_url: https://arxiv.org/abs/2312.14204
+  code_url:
+  short_use_case: A meta-transfer fMRI foundation strategy for post-traumatic epilepsy prediction under scarce clinical data.
+  backbone_note: Self-supervised plus meta-learning framework for functional brain activity analysis and zero-shot clinical transfer.
+  pretraining_tags:
+  - self-supervised learning
+  - meta-learning
+  - zero-shot transfer
+  pretraining_note: Combines self-supervised pretraining on control data with bi-level meta-learning to improve transfer to clinical fMRI tasks.
+  finetuning_tags:
+  - zero-shot transfer
+  - clinical adaptation
+  finetuning_note: Evaluated on neurological disorder classification and unseen TBI-based epilepsy prediction with transfer-oriented adaptation.
+  training_data_note: Large healthy-control fMRI pretraining data together with scarce clinical and traumatic-brain-injury cohorts.
+  open_source: false
+  seed_source: 'Brain Foundation Models: A Survey on Advancements in Neural Signal Processing and Brain Discovery (arXiv:2503.00580)'
+  updated_date: '2026-05-11'
+- id: neurovnn
+  name: NeuroVNN
+  aliases:
+  - Towards a Foundation Model for Brain Age Prediction using coVariance Neural Networks
+  modality_group: brain_mri
+  survey_category: foundation_model
+  pub_status: preprint
+  first_public_date: '2024-02-12'
+  venue_name: arXiv preprint
+  venue_year:
+  paper_url: https://arxiv.org/abs/2402.07684
+  code_url:
+  short_use_case: A structural-neuroimaging foundation model for brain-age prediction and cross-atlas transfer.
+  backbone_note: CoVariance neural network operating on cortical-thickness covariance structure with scale-free transfer across atlases.
+  pretraining_tags:
+  - regression pretraining
+  - covariance neural networks
+  - structural MRI modeling
+  pretraining_note: Pretrained on healthy-population age prediction to learn reusable anatomical representations.
+  finetuning_tags:
+  - full fine-tuning
+  - cross-atlas transfer
+  finetuning_note: Fine-tuned to estimate brain age in different neurological contexts with transfer across atlas definitions.
+  training_data_note: Healthy-population cortical-thickness features for pretraining and multiple neurological cohorts for transfer.
+  open_source: false
+  seed_source: 'Brain Foundation Models: A Survey on Advancements in Neural Signal Processing and Brain Discovery (arXiv:2503.00580)'
+  updated_date: '2026-05-11'
+- id: brainmae
+  name: BrainMAE
+  aliases:
+  - Brain Masked Auto-Encoder
+  modality_group: fmri
+  survey_category: foundation_model
+  pub_status: preprint
+  first_public_date: '2024-06-24'
+  venue_name: arXiv preprint
+  venue_year:
+  paper_url: https://arxiv.org/abs/2406.17086
+  code_url:
+  short_use_case: A region-aware self-supervised framework for learning transferable fMRI representations from ROI time series.
+  backbone_note: Region-aware graph attention encoder paired with masked autoencoding over fMRI time-series data.
+  pretraining_tags:
+  - masked autoencoding
+  - graph attention
+  - self-supervised learning
+  pretraining_note: Uses masked reconstruction directly on ROI time series to capture temporal dynamics while remaining robust to noise.
+  finetuning_tags:
+  - full fine-tuning
+  - downstream transfer
+  finetuning_note: Adapted to multiple downstream tasks after self-supervised pretraining on functional brain signals.
+  training_data_note: ROI-based fMRI time-series datasets spanning four downstream evaluation tasks.
+  open_source: false
+  seed_source: 'Brain Foundation Models: A Survey on Advancements in Neural Signal Processing and Brain Discovery (arXiv:2503.00580)'
+  updated_date: '2026-05-11'
+- id: brant-x
+  name: Brant-X
+  aliases: []
+  modality_group: eeg
+  fm_category: task_oriented
+  survey_category: foundation_model
+  pub_status: conference
+  first_public_date: '2024-08-28'
+  venue_name: ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD)
+  venue_year: 2024
+  paper_url: https://doi.org/10.1145/3637528.3671953
+  code_url: https://github.com/zjunet/Brant-X
+  short_use_case: An EEG-centered alignment framework that transfers EEG knowledge into other physiological signal tasks.
+  backbone_note: Two-level signal-alignment framework built around an EEG foundation model and cross-signal semantic matching.
+  pretraining_tags:
+  - cross-modal alignment
+  - EEG knowledge transfer
+  - physiological signal fusion
+  pretraining_note: Uses EEG as the carrier modality and aligns it with other physiological signals at multiple semantic scales.
+  finetuning_tags:
+  - task-specific adaptation
+  - full fine-tuning
+  finetuning_note: Evaluated on sleep staging, emotion recognition, gait freezing detection, and eye-movement communication tasks.
+  training_data_note: Joint or paired EEG-plus-physiology datasets spanning sleep, affective, movement, and communication scenarios.
+  open_source: true
+  updated_date: '2026-05-11'
+- id: neurolm
+  name: NeuroLM
+  aliases:
+  - NeuroLM-XL
+  modality_group: eeg
+  fm_category: general_purpose
+  survey_category: foundation_model
+  pub_status: conference
+  first_public_date: '2024-08-27'
+  venue_name: ICLR
+  venue_year: 2025
+  paper_url: https://openreview.net/forum?id=Io9yFt7XH7
+  code_url: https://github.com/935963004/NeuroLM
+  short_use_case: A multitask EEG foundation model that bridges EEG and language through instruction tuning.
+  backbone_note: Text-aligned neural tokenizer plus an autoregressive LLM-style backbone operating over discrete EEG tokens.
+  pretraining_tags:
+  - vector-quantized tokenization
+  - autoregressive pretraining
+  - EEG-text alignment
+  pretraining_note: Learns a text-aligned tokenizer and then models multi-channel EEG tokens with causal autoregression.
+  finetuning_tags:
+  - instruction tuning
+  - multitask adaptation
+  finetuning_note: Uses instruction-style adaptation to unify multiple EEG tasks within a single model family.
+  training_data_note: Approximately 25,000 hours of scalp EEG spanning multiple downstream BCI and clinical tasks.
+  open_source: true
+  seed_source: 'Brain Foundation Models: A Survey on Advancements in Neural Signal Processing and Brain Discovery (arXiv:2503.00580); Foundation Models for Brain Signals: A Critical Review of Current Progress and Future Directions (arXiv:2507.11783)'
+  updated_date: '2026-05-11'
+- id: brain-jepa
+  name: Brain-JEPA
+  aliases: []
+  modality_group: fmri
+  survey_category: foundation_model
+  pub_status: conference
+  first_public_date: '2024-09-25'
+  venue_name: NeurIPS
+  venue_year: 2024
+  paper_url: https://openreview.net/forum?id=gtU2eLSAmO
+  code_url:
+  short_use_case: A brain-dynamics foundation model for demographic prediction, disease prediction, and trait prediction from fMRI.
+  backbone_note: Joint-Embedding Predictive Architecture with brain-gradient positioning and spatiotemporal masking for ROI dynamics.
+  pretraining_tags:
+  - joint-embedding predictive learning
+  - spatiotemporal masking
+  - brain gradient positioning
+  pretraining_note: Uses JEPA-style predictive learning with functional-coordinate-aware positional structure for fMRI.
+  finetuning_tags:
+  - full fine-tuning
+  - linear probe
+  finetuning_note: Evaluated through both off-the-shelf probing and downstream fine-tuning on multiple prediction tasks.
+  training_data_note: Large-scale ROI-based fMRI cohorts spanning demographic, disease, prognosis, and trait prediction settings.
+  open_source: false
+  seed_source: 'Brain Foundation Models: A Survey on Advancements in Neural Signal Processing and Brain Discovery (arXiv:2503.00580)'
+  updated_date: '2026-05-11'
+- id: tgbd
+  name: TGBD
+  aliases:
+  - Toward Generalizing Visual Brain Decoding to Unseen Subjects
+  modality_group: fmri
+  survey_category: foundation_model
+  pub_status: conference
+  first_public_date: '2024-10-18'
+  venue_name: ICLR
+  venue_year: 2025
+  paper_url: https://openreview.net/forum?id=At9JmGF3xy
+  code_url: https://github.com/Xiangtaokong/TGBD
+  short_use_case: A multi-subject fMRI decoding paradigm aimed at generalizing visual brain decoding to unseen subjects.
+  backbone_note: Subject-unified visual brain decoding framework studied across MLP, CNN, and Transformer-style backbones.
+  pretraining_tags:
+  - multi-subject pretraining
+  - subject-generalized decoding
+  pretraining_note: Trains shared decoding pipelines across many subjects instead of using subject-specific heads or tokenizers.
+  finetuning_tags:
+  - cross-subject transfer
+  - visual decoding adaptation
+  finetuning_note: Adapted to visual brain decoding with explicit emphasis on generalization to unseen participants.
+  training_data_note: Image-fMRI pairs from 177 Human Connectome Project subjects in a movie-viewing setting.
+  open_source: true
+  seed_source: 'Brain Foundation Models: A Survey on Advancements in Neural Signal Processing and Brain Discovery (arXiv:2503.00580)'
+  updated_date: '2026-05-11'
+- id: fm-bim
+  name: FM-BIM
+  aliases:
+  - An approach to building foundation models for brain image analysis
+  modality_group: brain_mri
+  survey_category: foundation_model
+  pub_status: conference
+  first_public_date: '2024-10-22'
+  venue_name: International Conference on Medical Image Computing and Computer-Assisted Intervention (MICCAI)
+  venue_year: 2024
+  paper_url: https://doi.org/10.1007/978-3-031-72390-2_40
+  code_url:
+  short_use_case: A brain-image foundation pretraining strategy for transferable neuroimage analysis.
+  backbone_note: Brain-image foundation setup designed to support broad downstream MRI analysis tasks rather than a single diagnosis head.
+  pretraining_tags:
+  - self-supervised pretraining
+  - transfer learning
+  - brain image modeling
+  pretraining_note: Positions large-scale brain-image pretraining as a reusable foundation for downstream neuroimage analysis.
+  finetuning_tags:
+  - full fine-tuning
+  - downstream transfer
+  finetuning_note: Fine-tuned for downstream brain-image analysis tasks after generic neuroimage pretraining.
+  training_data_note: Brain MRI-style imaging data used to study general transfer across multiple image-analysis tasks.
+  open_source: false
+  seed_source: 'Brain Foundation Models: A Survey on Advancements in Neural Signal Processing and Brain Discovery (arXiv:2503.00580)'
+  updated_date: '2026-05-11'
+- id: mentality
+  name: Mentality
+  aliases: []
+  modality_group: eeg
+  fm_category: task_oriented
+  survey_category: foundation_model
+  pub_status: preprint
+  first_public_date: '2025-09-02'
+  venue_name: arXiv preprint
+  venue_year:
+  paper_url: https://arxiv.org/abs/2509.02746
+  code_url:
+  short_use_case: A Mamba-based EEG foundation model oriented toward neurological disorder diagnosis and seizure detection.
+  backbone_note: EEGNet and U-Net inspired front-end with selective state-space Mamba blocks for long-range sequence modeling.
+  pretraining_tags:
+  - self-supervised reconstruction
+  - state-space sequence modeling
+  - channel masking
+  pretraining_note: Pretrained with reconstruction-style learning to capture complex spatiotemporal EEG dynamics.
+  finetuning_tags:
+  - linear probe
+  - seizure detection adaptation
+  finetuning_note: Evaluated primarily on seizure detection after self-supervised pretraining.
+  training_data_note: Large seizure and non-seizure EEG recordings from the TUSZ setting.
+  open_source: false
+  seed_source: 'Foundation Models for Brain Signals: A Critical Review of Current Progress and Future Directions (arXiv:2507.11783)'
+  updated_date: '2026-05-11'
+- id: cerebro
+  name: CEReBrO
+  aliases:
+  - Cerebro
+  modality_group: eeg
+  fm_category: modality_specific
+  survey_category: foundation_model
+  pub_status: preprint
+  first_public_date: '2025-01-18'
+  venue_name: arXiv preprint
+  venue_year:
+  paper_url: https://arxiv.org/abs/2501.10885
+  code_url:
+  short_use_case: A compact EEG foundation model that emphasizes efficient large-scale pretraining on public scalp EEG.
+  backbone_note: Per-channel patch tokenization with efficient alternating temporal-spatial attention.
+  pretraining_tags:
+  - self-supervised learning
+  - alternating attention
+  - public-data pretraining
+  pretraining_note: Pretrained on more than 20,000 hours of publicly available scalp EEG with diverse montages.
+  finetuning_tags:
+  - full fine-tuning
+  - downstream transfer
+  finetuning_note: Fine-tuned on emotion detection, seizure detection, anomaly classification, and gait prediction tasks.
+  training_data_note: Over 20,000 hours of public scalp EEG with diverse channel configurations.
+  open_source: false
+  seed_source: 'Brain Foundation Models: A Survey on Advancements in Neural Signal Processing and Brain Discovery (arXiv:2503.00580)'
+  updated_date: '2026-05-11'
+- id: deeperbrain
+  name: DeeperBrain
+  aliases: []
+  modality_group: eeg
+  fm_category: general_purpose
+  survey_category: foundation_model
+  pub_status: preprint
+  first_public_date: '2026-01-05'
+  venue_name: arXiv preprint
+  venue_year:
+  paper_url: https://arxiv.org/abs/2601.06134
+  code_url:
+  short_use_case: A neuro-grounded EEG foundation model designed for stronger frozen-probing and universal BCI transfer.
+  backbone_note: EEG encoder with volume-conduction-aware channel encoding and neurodynamics-aware temporal encoding.
+  pretraining_tags:
+  - masked EEG reconstruction
+  - neurodynamics statistics prediction
+  - domain-specific inductive bias
+  pretraining_note: Combines local masked reconstruction with prediction of interpretable neural-dynamics statistics.
+  finetuning_tags:
+  - full fine-tuning
+  - frozen probe
+  finetuning_note: Evaluated under both end-to-end fine-tuning and rigorous frozen-probing protocols.
+  training_data_note: Large-scale EEG pretraining corpora used to target broad BCI generalization across downstream settings.
+  open_source: false
+  seed_source: 'EEG Foundation Models: Progresses, Benchmarking, and Open Problems (arXiv:2601.17883)'
+  updated_date: '2026-05-11'
+- id: reve
+  name: REVE
+  aliases:
+  - Representation for EEG with Versatile Embeddings
+  modality_group: eeg
+  fm_category: general_purpose
+  survey_category: foundation_model
+  pub_status: conference
+  first_public_date: '2025-09-18'
+  venue_name: NeurIPS
+  venue_year: 2025
+  paper_url: https://openreview.net/forum?id=ZeFMtRBy4Z
+  code_url: https://github.com/brain-bzh/reve
+  short_use_case: A large-scale EEG foundation model built to generalize across arbitrary recording setups and electrode layouts.
+  backbone_note: Masked-autoencoding EEG encoder with 4D positional encoding for variable electrode arrangements and signal lengths.
+  pretraining_tags:
+  - masked autoencoding
+  - setup-agnostic pretraining
+  - large-scale EEG pretraining
+  pretraining_note: Pretrained across many heterogeneous public EEG datasets to support strong transfer under both probing and light tuning.
+  finetuning_tags:
+  - linear probe
+  - low-shot adaptation
+  - full fine-tuning
+  finetuning_note: Demonstrates strong downstream performance with little to no fine-tuning across diverse EEG tasks.
+  training_data_note: More than 60,000 hours of EEG from 92 datasets spanning about 25,000 subjects.
+  open_source: true
+  seed_source: 'Direct paper lookup (primary source).'
+  updated_date: '2026-05-11'
+- id: uni-ntfm
+  name: Uni-NTFM
+  aliases:
+  - Unified Neural Topological Foundation Model
+  modality_group: eeg
+  fm_category: general_purpose
+  survey_category: foundation_model
+  pub_status: conference
+  first_public_date: '2025-09-29'
+  venue_name: ICLR
+  venue_year: 2026
+  paper_url: https://openreview.net/forum?id=oUMiuYHW21
+  code_url: https://github.com/czs-ict/Uni-NTFM
+  short_use_case: A neuroscience-motivated EEG foundation model for universal representation learning across many decoding tasks.
+  backbone_note: Heterogeneous feature projection plus topological embedding and a mixture-of-experts Transformer backbone.
+  pretraining_tags:
+  - topology-aware modeling
+  - mixture-of-experts
+  - time-frequency joint encoding
+  pretraining_note: Aligns EEG modeling with neural-mechanism priors by jointly encoding transient waveform and rhythmic spectral structure.
+  finetuning_tags:
+  - linear probe
+  - full fine-tuning
+  finetuning_note: Evaluated across nine downstream EEG tasks under both probing and end-to-end fine-tuning.
+  training_data_note: Around 28,000 hours of diverse EEG data used for large-scale pretraining.
+  open_source: true
+  seed_source: 'Direct paper lookup (primary source).'
+  updated_date: '2026-05-11'
+- id: omni-fmri
+  name: Omni-fMRI
+  aliases: []
+  modality_group: fmri
+  survey_category: foundation_model
+  pub_status: preprint
+  first_public_date: '2026-01-30'
+  venue_name: arXiv preprint
+  venue_year:
+  paper_url: https://arxiv.org/abs/2601.23090
+  code_url:
+  short_use_case: An atlas-free fMRI foundation model that works directly on voxel-level signals for broad transfer.
+  backbone_note: Voxel-level fMRI encoder with dynamic patching for scalable atlas-free pretraining.
+  pretraining_tags:
+  - self-supervised learning
+  - atlas-free modeling
+  - dynamic patching
+  pretraining_note: Scales voxel-level pretraining by dynamically patching signals instead of relying on predefined ROIs.
+  finetuning_tags:
+  - downstream transfer
+  - full fine-tuning
+  finetuning_note: Benchmarked across resting-state and task-based fMRI tasks after large-scale pretraining.
+  training_data_note: 49,497 fMRI sessions across nine datasets, with an 11-dataset benchmark suite for evaluation.
+  open_source: false
+  seed_source: 'Direct paper lookup (primary source).'
+  updated_date: '2026-05-11'
+- id: slim-brain
+  name: SLIM-Brain
+  aliases:
+  - Sample-efficient, Low-memory fMRI Foundation Model for Human Brain
+  modality_group: fmri
+  survey_category: foundation_model
+  pub_status: preprint
+  first_public_date: '2025-12-26'
+  venue_name: arXiv preprint
+  venue_year:
+  paper_url: https://arxiv.org/abs/2512.21881
+  code_url:
+  short_use_case: A data- and training-efficient atlas-free fMRI foundation model for broad benchmark transfer.
+  backbone_note: Two-stage atlas-free design with a lightweight temporal selector and a Hiera-JEPA style 4D encoder.
+  pretraining_tags:
+  - atlas-free modeling
+  - JEPA-style learning
+  - memory-efficient pretraining
+  pretraining_note: Improves both data efficiency and GPU efficiency by selecting salient windows before fine-grained voxel modeling.
+  finetuning_tags:
+  - downstream transfer
+  - full fine-tuning
+  finetuning_note: Evaluated across diverse public fMRI benchmarks after compact large-scale pretraining.
+  training_data_note: Requires about 4,000 pretraining sessions and reports strong transfer across seven public benchmarks.
+  open_source: false
+  seed_source: 'Direct paper lookup (primary source).'
+  updated_date: '2026-05-11'
