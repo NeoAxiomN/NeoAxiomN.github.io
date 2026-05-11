@@ -1,5 +1,5 @@
 ---
-title: "【Algorithm】高精加模板"
+title: "高精加模板"
 date: 2025-03-09
 permalink: /posts/2025/03/high-precision-addition/
 published: true

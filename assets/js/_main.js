@@ -55,6 +55,8 @@ var toggleTheme = () => {
 // JSON data to be retrieve when the theme is switched. The listener should only be added if the data is 
 // actually present on the page.
 import { plotlyDarkLayout, plotlyLightLayout } from './theme.js';
+import { initBlogToc } from './blog_toc/blog_toc.js';
+import { initEfmTracker } from './efm_tracker/efm_tracker.js';
 let plotlyElements = document.querySelectorAll("pre>code.language-plotly");
 if (plotlyElements.length > 0) {
   document.addEventListener("readystatechange", () => {
@@ -139,5 +141,8 @@ $(document).ready(function () {
     offset: -scssMastheadHeight,
     preventDefault: false,
   });
+
+  initEfmTracker();
+  initBlogToc();
 
 });
