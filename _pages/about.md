@@ -41,7 +41,8 @@ Research Experience
 Selected Work
 ======
 
-- **EmBrace**: A collective knowledge fusion framework toward unified EEG foundation models, centered on sample-aware fusion in a shared representation space. See [publication page](/publication/2026-embrace).
+- EmBrace: A collective knowledge fusion framework toward unified EEG foundation models. </br> Ziyu Jia, **Junyi Lin**, Pu Wan, Jinxin Pi, Jingying Ma, Peiliang Gong, Xinliang Zhou, Yi Ding<sup>&#x2020;</sup>, Chenyu Liu<sup>&#x2020;</sup>. </br> Forty-Third International Conference on Machine Learning (ICML 2026). [OpenReview](https://openreview.net/forum?id=BJ5rYj8O8W)
+
 
 <!-- Technical Skills
 ======
